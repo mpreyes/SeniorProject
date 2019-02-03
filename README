@@ -5,9 +5,8 @@ Written in Django, (2.0.2) HTML/CSS, SQL.
 
 
 
-Use python3 to avoid confusion.
+Use python3 for all commands to avoid confusion.
 
 To run the development server:
 
 python3 manage.py runserver
-
