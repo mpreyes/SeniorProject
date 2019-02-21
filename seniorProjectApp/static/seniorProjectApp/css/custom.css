@@ -1,0 +1,10 @@
+
+/*
+ * Our own custom styles for the template. must be included in page as necessary.
+ */
+
+
+
+ .class-list li:hover{
+     color: blue;
+ }
