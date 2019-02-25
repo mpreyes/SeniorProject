@@ -79,6 +79,9 @@ WSGI_APPLICATION = 'seniorproject.wsgi.application'
 DATABASES = {
 
     # test database, enter your own credentials here
+    # create a database  and name it: senior_project
+    # under priviliges, add a user named: s_project with the password below
+    
     #   'default': {
     #     'ENGINE': 'django.db.backends.mysql',
     #     'NAME': 'senior_project',
