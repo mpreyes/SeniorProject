@@ -35,17 +35,18 @@
   <div class="row">
 
     {% for class in classes_list%}
-      
+  
       <div class="col-sm-12 col-lg-6 class-list">
       <div class="panel panel-default panel-info">
       <div class="panel-heading">{{class.name}}</div>
+        <a class="class_list" href="/seniorProjectApp/links/">
             <div class="panel-body">
-              class description
+              {{class.description}}
             </div>
-          <div class="panel-footer">here be ye link</div>
+                </a>
+          <div class="panel-footer">LEVEL: freshman</div>
         </div>
     </div>
-
   {% endfor %}
 </div>
 </div>

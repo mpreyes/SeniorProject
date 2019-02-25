@@ -1,4 +1,4 @@
-
+.vscode
 seniorProjectApp/__pycache__/*.pyc
 seniorProjectApp/migrations/__pycache__/*.pyc
 seniorproject/__pycache__/*.pyc

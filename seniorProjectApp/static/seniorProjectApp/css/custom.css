@@ -5,6 +5,6 @@
 
 
 
- .class-list li:hover{
+ .class_list:hover{
      color: blue;
  }

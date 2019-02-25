@@ -32,7 +32,22 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h2 class="text-center">Links page</h2>
+          <h2 class="text-center">(links page) LEVEL: Freshman</h2>
+
+          <div class="row">
+          {% for link in links%}
+          <div class="col-md-6">
+            <div class="list-group">
+            <a href="" class="list-group-item active">
+              <h4 class="list-group-item-heading">List group item heading</h4>
+              <p class="list-group-item-text">{{link}}</p>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+          </div>
+
+
          
         </div>
       </div>
