@@ -82,14 +82,14 @@ DATABASES = {
     # create a database  and name it: senior_project
     # under priviliges, add a user named: s_project with the password below
     
-    #   'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'senior_project',
-    #     'USER': 's_project',
-    #     'PASSWORD': 'seniorproject',
-    #     'HOST':  '127.0.0.1',
-    #     'PORT': '8889',
-    #     }
+      'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'senior_project',
+        'USER': 's_project',
+        'PASSWORD': 'seniorproject',
+        'HOST':  '127.0.0.1',
+        'PORT': '8889',
+        }
 }
 
 
