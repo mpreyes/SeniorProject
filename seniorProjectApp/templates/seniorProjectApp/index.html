@@ -1,5 +1,7 @@
 {% extends './default.html' %}
 {% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
 <!DOCTYPE html>
 
 
@@ -43,8 +45,14 @@
 
           <div class="login-box-body">
             <p class="login-box-msg">Sign in to start your session</p>
-            <div class="form-group">
-              <form name="" id="loginForm">
+            <div class="text-center">
+
+  
+                <a href="{% provider_login_url "google" %}">
+                       <button type="button" class="btn btn-primary"><i class="fab fa-google"></i> Login with Google</button>
+                       </a>
+
+              {% comment %} <form name="" id="loginForm">
                 <div class="form-group has-feedback">
                   <!----- username -------------->
                   <input class="form-control" placeholder="Username" id="loginid" type="text" autocomplete="off" />
@@ -62,16 +70,21 @@
                 <div class="row">
                   <div class="col-xs-12">
                     <div class="checkbox icheck">
-                      <label>
-                          <input type="checkbox" id="loginrem" > Remember Me
-                              </label>
+                       <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                        
+                        <i class="fab fa-google"></i>
+
+                      <label>  <input type="checkbox" id="loginrem" > Remember Me
+                              </label> 
                     </div>
+
                   </div>
                   <div class="col-xs-12">
                     <button type="button" class="btn btn-green btn-block btn-flat" onclick="userlogin()">Sign In</button>
                   </div>
                 </div>
-              </form>
+              </form> {% endcomment %}
+              
             </div>
           </div>
         </div>
@@ -89,7 +102,7 @@
           <div class="banner-text text-center">
             <div class="text-border">
               <!-- TODO remove inline styling -->
-              <h2 class="text-dec">CODE<strong>MENTOR</strong></h2>
+              <h2 class="text-dec">CODE <strong>MENTOR</strong></h2>
             </div>
             <div class="intro-para text-center quote">
               <p class="big-text">Computing resources tailored to your degree</p>
