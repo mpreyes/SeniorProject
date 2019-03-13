@@ -27,31 +27,44 @@
   </nav>
   <!--/ Navigation bar-->
 
+  <!-- TODO figure out if we need the "section" attribute or if we can just use a div,
+      here should be a div, section should be used to group elements that are related, 
+      would be more helpful to use section for each "level" group of courses (fr, so, jr, sr) -->
   <section id="cta-2">
-           <h2 class="text-center">Dashboard page</h2>
-               <a href="/seniorProjectApp/links/">
-            <button type="button" class="btn btn-primary">Links page</button>
-            </a>
-  <div class="container">
-  <div class="row">
-
-    {% for class in classes_list%}
-  
-      <div class="col-sm-12 col-lg-6 class-list">
-      <div class="panel panel-default panel-info">
-      <div class="panel-heading">{{class.name}}</div>
-        <a class="class_list" href="/seniorProjectApp/links/">
-            <div class="panel-body">
-              {{class.description}}
-            </div>
-                </a>
-          <div class="panel-footer">LEVEL: freshman</div>
-        </div>
-    </div>
-  {% endfor %}
-</div>
-</div>
+    <h2 class="text-center">Dashboard</h2>
   </section>
 
+  <!-- TODO remove links button once we link individual courses to the links page-->
+  <a href="/seniorProjectApp/links/">
+    <button type="button" class="btn btn-primary">Links page</button>
+  </a>
 
+  <!-- freshman courses header bar, build into loop once working -->
+  <!-- TODO make background the light blue? or lighter blue? -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-lg-6">
+        <h2>FRESHMAN LEVEL COURSES</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+    {% for class in classes_list%}
+      <div class="col-sm-12 col-lg-4 class-list">
+        <div class="panel panel-default panel-info">
+          <div class="panel-heading">{{class.name}}</div>
+            <a class="class_list" href="/seniorProjectApp/links/">
+                <div class="panel-body">
+                  {{class.description}}
+                </div>
+            </a>
+            <div class="panel-footer">LEVEL: freshman</div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+  
 {% endblock %}
