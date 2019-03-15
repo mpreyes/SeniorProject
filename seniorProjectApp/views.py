@@ -20,8 +20,8 @@ def dashboard(request):
 
 
     #if changing degree, change degreeID for both
-    degree = Degree.objects.get(degreeID = 2)
-    courses = Courses.objects.filter(degreeID = 2)
+    degree = Degree.objects.get(degreeID = 1)
+    courses = Courses.objects.filter(degreeID = 1)
 
     #MR: set cache to pass in whatever level we want to show
     #MR TODO: Create a class to represent our entire class/link relationship
@@ -33,8 +33,8 @@ def dashboard(request):
 def links(request):
 
 
-    courses = Courses.objects.get(degreeID = 2)
-    topics = Topics.objects.filter(courseID = 5)
+    courses = Courses.objects.filter(degreeID = 1)
+    topics = Topics.objects.filter(courseID = 2)
 
     links = Links.objects.all()
    
