@@ -16,6 +16,8 @@ class Degree(models.Model):
 class Courses(models.Model):
     courseID = models.AutoField(primary_key=True)
     courseName = models.CharField(max_length=100)
+    courseDescription = models.CharField(max_length=400,default="default description")
+    courseLink = models.CharField(max_length=100,default="links/")
     degreeID = models.IntegerField()
     references = models.ForeignKey(Degree, on_delete=models.CASCADE) 
     
@@ -32,7 +34,7 @@ class Topics(models.Model):
 
 #Link to Geeks2Geeks article on loops
 class Links(models.Model):
-    linksID = models.IntegerField(primary_key=True)
+    linksID = models.AutoField(primary_key=True)
     linkName = models.CharField(max_length=100)
     topicID = models.IntegerField()
     references = models.ForeignKey(Topics, on_delete=models.CASCADE) 

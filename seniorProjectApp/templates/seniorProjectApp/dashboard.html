@@ -51,13 +51,14 @@
 
   <div class="container">
     <div class="row">
+
     {% for class in classes_list%}
       <div class="col-sm-12 col-lg-4 class-list">
         <div class="panel panel-default panel-info">
-          <div class="panel-heading">{{class.name}}</div>
+          <div class="panel-heading">{{class.courseName}}</div>
             <a class="class_list" href="/seniorProjectApp/links/">
                 <div class="panel-body">
-                  {{class.description}}
+                  {{class.courseDescription}}
                 </div>
             </a>
             <div class="panel-footer">LEVEL: freshman</div>

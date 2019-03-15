@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.core.cache import caches
 
 # Create your views here.
-
+from seniorProjectApp.models import *
 
 def index(request):
     return render(request, 'seniorProjectApp/index.html')
@@ -14,6 +14,8 @@ def signup(request):
 
 def dashboard(request):
     #ERIN: add any field you want passed to the dashboard.html page
+    data = Courses.objects.all()
+
     level_freshman = [{"name": "intro to programming", "description": "intro  to programming teaches you the basics of programming, including..", "color":
      "blue", "links" : "1"},{"name": "class2", "description": "intro  to programming teaches you the basics of programming, including..", "color": "blue"},
      {"name": "class3", "description": "intro  to programming teaches you the basics of programming, including..","color": "blue", },{"name": "class4", 
@@ -24,7 +26,7 @@ def dashboard(request):
     #MR: set cache to pass in whatever level we want to show
     #MR TODO: Create a class to represent our entire class/link relationship
     #caches['levels'].set('level_freshman', level_freshman) 
-    context ={"classes_list": level_freshman}
+    context = {"classes_list": data}
     #print("context " + str(context["classes_list"]))
 
     return render(request,'seniorProjectApp/dashboard.html',context)
