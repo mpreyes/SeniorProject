@@ -410,7 +410,7 @@ Mentor Team
     padding: 12px 0px;
 }
 .pm-staff-profile-bio {
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   color: #4b4b4b;
   font-weight: 100;
 }
