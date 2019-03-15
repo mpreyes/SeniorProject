@@ -18,8 +18,7 @@ class Courses(models.Model):
     courseName = models.CharField(max_length=100)
     courseDescription = models.CharField(max_length=400,default="default description")
     courseLink = models.CharField(max_length=100,default="links/")
-    degreeID = models.IntegerField()
-    references = models.ForeignKey(Degree, on_delete=models.CASCADE) 
+    degreeID = models.ForeignKey(Degree, on_delete=models.CASCADE) 
     
 
 
@@ -27,8 +26,7 @@ class Courses(models.Model):
 class Topics(models.Model):
     topicID = models.AutoField(primary_key=True)
     topicName = models.CharField(max_length=100)
-    courseID = models.IntegerField()
-    references = models.ForeignKey(Courses, on_delete=models.CASCADE) 
+    courseID = models.ForeignKey(Courses, on_delete=models.CASCADE) 
     
 
 
@@ -36,8 +34,7 @@ class Topics(models.Model):
 class Links(models.Model):
     linksID = models.AutoField(primary_key=True)
     linkName = models.CharField(max_length=100)
-    topicID = models.IntegerField()
-    references = models.ForeignKey(Topics, on_delete=models.CASCADE) 
+    topicID = models.ForeignKey(Topics, on_delete=models.CASCADE) 
 
 
 
@@ -52,9 +49,8 @@ class Users(models.Model):
 
 class Progress(models.Model):
     progressID = models.IntegerField(primary_key=True)
-    userID = models.IntegerField()
-    linkID = models.IntegerField()
     isCompleted = models.BooleanField()
     notes = models.TextField()
-    references = models.ForeignKey(Users, on_delete=models.CASCADE) 
+    userID = models.ForeignKey(Users, on_delete=models.CASCADE)
+    linkID = models.ForeignKey(Links, on_delete=models.CASCADE) 
 

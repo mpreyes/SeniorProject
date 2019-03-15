@@ -11,23 +11,19 @@ def index(request):
 
 def signup(request):
     return render(request,'seniorProjectApp/signup.html')
+    #Signup MUST request a degree: Computer Science = 1
 
 def dashboard(request):
     #ERIN: add any field you want passed to the dashboard.html page
-    data = Courses.objects.all()
 
-    level_freshman = [{"name": "intro to programming", "description": "intro  to programming teaches you the basics of programming, including..", "color":
-     "blue", "links" : "1"},{"name": "class2", "description": "intro  to programming teaches you the basics of programming, including..", "color": "blue"},
-     {"name": "class3", "description": "intro  to programming teaches you the basics of programming, including..","color": "blue", },{"name": "class4", 
-      "description": "intro  to programming teaches you the basics of programming, including..", "color": "blue"}, {"name": "class5", "description": "intro  to programming teaches you the basics of programming, including..",
-       "color": "blue"},{"name": "class6",  "description": "intro  to programming teaches you the basics of programming, including..",
-       "color": "blue"}]
+    #getting courses from computer science only
+    degree = Degree.objects.get(degreeID = 1)
+    courses = Courses.objects.filter(degreeID = 1)
 
     #MR: set cache to pass in whatever level we want to show
     #MR TODO: Create a class to represent our entire class/link relationship
     #caches['levels'].set('level_freshman', level_freshman) 
-    context = {"classes_list": data}
-    #print("context " + str(context["classes_list"]))
+    context = {"degree_list": degree, "courses_list": courses}
 
     return render(request,'seniorProjectApp/dashboard.html',context)
 
