@@ -52,11 +52,12 @@
   <div class="container">
     <div class="row">
 
+
     {% for course in courses_list%}
       <div class="col-sm-12 col-lg-4 class-list">
         <div class="panel panel-default panel-info">
           <div class="panel-heading">{{course.courseName}}</div>
-            <a class="class_list" href="/seniorProjectApp{{course.courseLink}}">
+            <a class="class_list" href="/seniorProjectApp/{{course.courseLink}}">
                 <div class="panel-body">
                   {{course.courseDescription}}
                 </div>

@@ -17,8 +17,11 @@ def dashboard(request):
     #ERIN: add any field you want passed to the dashboard.html page
 
     #getting courses from computer science only
-    degree = Degree.objects.get(degreeID = 1)
-    courses = Courses.objects.filter(degreeID = 1)
+
+
+    #if changing degree, change degreeID for both
+    degree = Degree.objects.get(degreeID = 2)
+    courses = Courses.objects.filter(degreeID = 2)
 
     #MR: set cache to pass in whatever level we want to show
     #MR TODO: Create a class to represent our entire class/link relationship
@@ -28,9 +31,13 @@ def dashboard(request):
     return render(request,'seniorProjectApp/dashboard.html',context)
 
 def links(request):
+
+
+    courses = Courses.objects.get(degreeID = 2)
+    topics = Topics.objects.filter(courseID = 5)
+
+    links = Links.objects.all()
    
-    #context = {"levels":  caches['levels'].get('level_freshman')}
-    class_1_links = [ "link1", "link","link2","link2","link3","link3","link4","linky"]
-    context = {"links": class_1_links}
+    context = {"courses":courses, "topics": topics, "links": links}
     return render(request,'seniorProjectApp/links.html',context)
 

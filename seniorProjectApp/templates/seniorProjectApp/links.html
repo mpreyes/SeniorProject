@@ -32,19 +32,26 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h2 class="text-center"> Course: Computer Science(links page) LEVEL: Freshman</h2>
+          <h2 class="text-center"> LEVEL: Freshman, {{courses.courseName}} </h2>
 
           <div class="row">
-          {% for link in links%}
+
+          {% for topic in topics%}
           <div class="col-md-6">
             <div class="list-group">
             <a href="" class="list-group-item active">
-              <h4 class="list-group-item-heading">List group item heading</h4>
-              <p class="list-group-item-text">{{link}}</p>
+              <h4 class="list-group-item-heading">{{topic.topicName}}</h4>
+
+              {% for link in links %}
+               {% if topic.topicID == link.topicID_id %}
+              <p class="list-group-item-text"><a href='{{link.linkName}}'>{{link.linkName}}</a></p>
+              {% endif %}
+              {% endfor %}
               </a>
             </div>
           </div>
           {% endfor %}
+
           </div>
 
 
