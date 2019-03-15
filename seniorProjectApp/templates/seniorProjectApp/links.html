@@ -44,7 +44,17 @@
 
               {% for link in links %}
                {% if topic.topicID == link.topicID_id %}
-              <p class="list-group-item-text"><a href='{{link.linkName}}'>{{link.linkName}}</a></p>
+              <p class="list-group-item-text">
+                  <!-- toggle here ! -->
+                  <label class="containercheck">Link 
+                      <input type="checkbox" checked="checked">
+                      <span class="checkmark"></span>
+                  </label>
+
+                  <a href='{{link.linkName}}'>{{link.linkName}}</a>
+
+                  <!-- notes here ! -->
+              </p>
               {% endif %}
               {% endfor %}
               </a>
