@@ -32,10 +32,8 @@ def dashboard(request):
 
 def links(request,courseID):
 
-    #degreeId = 2, software engineering
-    courses = Courses.objects.get(courseID = 6)
-    #OOP courseId = 6
-    topics = Topics.objects.filter(courseID = 6)
+    courses = Courses.objects.filter(degreeID = 1)
+    topics = Topics.objects.filter(courseID = 2)
 
     links = Links.objects.all()
    
