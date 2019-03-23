@@ -39,15 +39,19 @@
           {% for topic in topics%}
           <div class="col-md-6">
             <div class="list-group">
-            <a href="" class="list-group-item active">
+          
               <h4 class="list-group-item-heading">{{topic.topicName}}</h4>
 
               {% for link in links %}
                {% if topic.topicID == link.topicID_id %}
-              <p class="list-group-item-text"><a href='{{link.linkName}}'>{{link.linkName}}</a></p>
+
+              <p class="list-group-item-text">
+              <a href='{{link.linkName}}'>{{link.linkName}}</a>
+              </p>
+              
               {% endif %}
               {% endfor %}
-              </a>
+    
             </div>
           </div>
           {% endfor %}
