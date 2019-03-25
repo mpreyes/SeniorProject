@@ -13,15 +13,14 @@ def signup(request):
     return render(request,'seniorProjectApp/signup.html')
     #Signup MUST request a degree: Computer Science = 1
 
-def dashboard(request):
+def dashboard(request, degreeID_id):
     #ERIN: add any field you want passed to the dashboard.html page
 
     #getting courses from computer science only
 
-
     #if changing degree, change degreeID for both
-    degree = Degree.objects.get(degreeID = 1)
-    courses = Courses.objects.filter(degreeID = 1)
+    degree = Degree.objects.get(degreeID = degreeID_id)
+    courses = Courses.objects.filter(degreeID = degreeID_id)
 
     #MR: set cache to pass in whatever level we want to show
     #MR TODO: Create a class to represent our entire class/link relationship
@@ -30,10 +29,10 @@ def dashboard(request):
 
     return render(request,'seniorProjectApp/dashboard.html',context)
 
-def links(request,courseID):
+def links(request,degreeID_id,courseID):
 
-    courses = Courses.objects.filter(degreeID = 1)
-    topics = Topics.objects.filter(courseID = 2)
+    courses = Courses.objects.filter(degreeID = degreeID_id)
+    topics = Topics.objects.filter(courseID = courseID)
 
     links = Links.objects.all()
    
