@@ -19,6 +19,7 @@ class Courses(models.Model):
     courseDescription = models.CharField(max_length=400,default="default description")
     courseLink = models.CharField(max_length=100,default="links/")
     degreeID = models.ForeignKey(Degree, on_delete=models.CASCADE) 
+    level = models.IntegerField(default=1)
     
 
 

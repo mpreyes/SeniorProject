@@ -18,9 +18,9 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-           <li><a href="/seniorProjectApp/dashboard/">Dashboard</a></li>
-          <li><a href="#" data-target="/seniorProjectApp/signup/" data-toggle="modal">Sign up</a></li>
-          <li class="btn-trial"><a href="#login">Sign in</a></li>
+            <li><a href="/seniorProjectApp/1/">Dashboard</a></li>
+            <li><a href="/seniorProjectApp/signup/">Sign Up</a></li>
+            <li class="btn-trial"><a href="/seniorProjectApp/login/">Log in</a></li>
         </ul>
       </div>
     </div>
@@ -40,14 +40,21 @@
             <div class="list-group">
               <!-- EB: TODO style heading -->
               <h3 class="list-group-item-heading">{{topic.topicName}}</h3>
-
-              {% for link in links %}
+              
+            {% for link in links %}
                {% if topic.topicID == link.topicID_id %}
               <p class="list-group-item-text">
                   <!-- EB: toggle here ! -->
                   <label class="containercheck"> 
-                      <input type="checkbox">
+                     
+                      {% if checked_bool %}
+                       <input type="checkbox" checked>
                       <span class="checkmark"></span>
+                        {% else %}
+                         <input type="checkbox">
+                        <span class="checkmark"></span>
+
+                      {% endif%}
                       <a href='{{link.linkName}}'>{{link.linkName}}</a>
 
                       <!-- EB: notes here ! -->

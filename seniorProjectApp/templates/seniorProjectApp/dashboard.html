@@ -16,11 +16,14 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#faculity-member">About</a></li>
-           <li><a href="/seniorProjectApp/dashboard/">Dashboard</a></li>
-          <li><a href="/seniorProjectApp/signup/" >Sign up</a></li>
-          <li class="btn-trial"><a href="#login" data-toggle="modal">Sign in</a></li>
-          <p><a href="{% url 'account_logout' %}">Log out</a>
+            <li><a href="/seniorProjectApp/1/">Dashboard</a></li>
+                {% if user.is_authenticated %}
+                       <li><a href="/seniorProjectApp/1/">Hi {{ user.username }}!</a></li>
+                  <li class="btn-trial"><a href="{% url 'logout' %}">logout</a></li>
+                {% else %}
+                  <p>You are not logged in</p>
+                 <li class="btn-trial"> <a href="{% url 'login' %}">login</a></li>
+                {% endif %}
         </ul>
       </div>
     </div>
@@ -42,6 +45,7 @@
   <!-- freshman courses header bar, build into loop once working -->
   <!-- TODO make background the light blue? or lighter blue? -->
   <div class="container">
+
     <div class="row">
       <div class="col-sm-12 col-lg-6">
         <h2>FRESHMAN LEVEL COURSES</h2>
@@ -57,7 +61,7 @@
       <div class="col-sm-12 col-lg-4 class-list">
         <div class="panel panel-default panel-info">
           <div class="panel-heading">{{course.courseName}}</div>
-            <a class="class_list" href="/seniorProjectApp/links/{{course.courseID}}">
+            <a class="class_list" href="/seniorProjectApp/{{course.courseID}}">
                 <div class="panel-body">
                   {{course.courseDescription}}
                 </div>

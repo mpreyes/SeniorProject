@@ -18,8 +18,14 @@ from django.urls import path, include
  
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
     path('seniorProjectApp/', include('seniorProjectApp.urls')),
-    path('accounts/',include('allauth.urls'))
+    path('seniorProjectApp/', include('django.contrib.auth.urls')), # new
+    
+    
+    
+
+
 
 ]
