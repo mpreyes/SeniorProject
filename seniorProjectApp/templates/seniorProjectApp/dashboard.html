@@ -48,29 +48,39 @@
 
     <div class="row">
       <div class="col-sm-12 col-lg-6">
-        <h2>FRESHMAN LEVEL COURSES</h2>
+        <h2 class="text-center">FRESHMAN LEVEL COURSES</h2>
       </div>
     </div>
   </div>
 
   <div class="container">
-    <div class="row">
+    <!-- EB: loop going through course levels (fr, so, jr, sr) -->
+    <!-- EB: begin loop for levels -->
+      <div class="row">
+        <div class="col-12">
+          <!-- EB: add course.level -->
+          <h2 class="text-center">{{course.level}} LEVEL COURSES</h2>
+        </div>
+      </div>
 
-
-    {% for course in courses_list%}
-      <div class="col-sm-12 col-lg-4 class-list">
-        <div class="panel panel-default panel-info">
-          <div class="panel-heading">{{course.courseName}}</div>
-            <a class="class_list" href="/seniorProjectApp/{{course.courseID}}">
+      <div class="row">
+        <!-- EB: loop needs to go through all the courses specific to an outside loop going through course levels (fr, so, jr,sr) -->
+        {% for course in courses_list%}
+        <div class="col-sm-12 col-lg-4 class-list">
+            <a class="class_list" href="/seniorProjectApp/links/{{course.courseID}}">
+              <!-- EB: figure out why styling isn't working -->
+              <div class="panel panel-info">
+                <div class="panel-heading">{{course.courseName}}</div>
                 <div class="panel-body">
                   {{course.courseDescription}}
                 </div>
+              </div>
             </a>
-            <div class="panel-footer">LEVEL: freshman</div>
         </div>
+        {% endfor %}
       </div>
-    {% endfor %}
-    </div>
+    <!-- EB: end loop for levels -->
+    <!--  <div class="hline"></div> -->
   </div>
   
 {% endblock %}
