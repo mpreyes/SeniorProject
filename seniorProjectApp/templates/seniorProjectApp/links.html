@@ -31,39 +31,43 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h2 class="text-center"> LEVEL: Freshman, {{courses.courseName}} </h2>
+          <h2 class="text-center">COURSE TITLE {{courses.courseName}} </h2>
+
+          <!-- EB: TODO replace text -->
+          <div class="row">
+            <div class="col-12">pull course description from the database and show here</div>
+          </div>
 
           <div class="row">
           {% for topic in topics%}
-          <!-- EB: TODO make it one column-->
-          <div class="col-md-6">
-            <div class="list-group">
-              <!-- EB: TODO style heading -->
-              <h3 class="list-group-item-heading">{{topic.topicName}}</h3>
-              
-            {% for link in links %}
-               {% if topic.topicID == link.topicID_id %}
-              <p class="list-group-item-text">
-                  <!-- EB: toggle here ! -->
-                  <label class="containercheck"> 
-                     
-                      {% if checked_bool %}
-                       <input type="checkbox" checked>
-                      <span class="checkmark"></span>
-                        {% else %}
-                         <input type="checkbox">
+            <div class="col-md-8">
+              <div class="list-group">
+                <!-- EB: TODO style heading -->
+                <h3 class="list-group-item-heading">{{topic.topicName}}</h3>
+                
+              {% for link in links %}
+                {% if topic.topicID == link.topicID_id %}
+                <p class="list-group-item-text">
+                    <!-- EB: toggle here ! -->
+                    <label class="containercheck"> 
+                      
+                        {% if checked_bool %}
+                        <input type="checkbox" checked>
                         <span class="checkmark"></span>
+                          {% else %}
+                          <input type="checkbox">
+                          <span class="checkmark"></span>
 
-                      {% endif%}
-                      <a href='{{link.linkName}}'>{{link.linkName}}</a>
+                        {% endif%}
+                        <a href='{{link.linkName}}'>{{link.linkName}}</a>
 
-                      <!-- EB: notes here ! -->
-                  </label>
-              </p>
-              {% endif %}
-              {% endfor %}
+                        <!-- EB: notes here ! -->
+                    </label>
+                </p>
+                {% endif %}
+                {% endfor %}
+              </div>
             </div>
-          </div>
           {% endfor %}
 
           </div>
