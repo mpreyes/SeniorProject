@@ -16,7 +16,6 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/seniorProjectApp/1/">Dashboard</a></li>
                 {% if user.is_authenticated %}
                        <li><a href="/seniorProjectApp/1/">Hi {{ user.username }}!</a></li>
                   <li class="btn-trial"><a href="{% url 'logout' %}">logout</a></li>
@@ -34,11 +33,8 @@
       here should be a div, section should be used to group elements that are related, 
       would be more helpful to use section for each "level" group of courses (fr, so, jr, sr) -->
   <section id="cta-2">
-    <h2 class="text-center">{{degree_list.degreeName}}: Dashboard</h2>
+    <h2 class="text-center">Dashboard - {{degree_list.degreeName}}</h2>
   </section>
-
-  <!-- freshman courses header bar, build into loop once working -->
-  <!-- TODO make background the light blue? or lighter blue? -->
 
   <div class="container">
     <!-- EB: loop going through course levels (fr, so, jr, sr) -->
@@ -62,6 +58,8 @@
               {% endif%} 
             {% endfor %}
       </div>
+
+
 
 
       <div class="row">

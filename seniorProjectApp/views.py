@@ -25,7 +25,6 @@ class SignUp(generic.CreateView):
 def dashboard(request, degreeID_id):
     #ERIN: add any field you want passed to the dashboard.html page
     user_details = []
-    user_profile = request.user.get_profile()
     
     #getting courses from computer science only
 

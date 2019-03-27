@@ -2,8 +2,6 @@
 {% load static %}
 
 <!DOCTYPE html>
-
-
 {% block content %}
   <!--Navigation bar-->
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -18,12 +16,22 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/seniorProjectApp/1/">Dashboard</a></li>
             <!-- nav for index page -->
             <li><a href="#feature">Features</a></li>  
             <li><a href="#courses">Courses</a></li>
-            <li><a href="/seniorProjectApp/signup/">Sign Up</a></li>
-            <li class="btn-trial"><a href="/seniorProjectApp/login/">Log in</a></li>
+           
+
+              {% if user.is_authenticated %}
+                       <li><a href="/seniorProjectApp/1/">Dashboard</a></li>
+                  <li class="btn-trial"><a href="{% url 'logout' %}">logout</a></li>
+                {% else %}
+                   <li><a href="/seniorProjectApp/signup/">Sign Up</a></li>
+                 <li class="btn-trial"><a href="/seniorProjectApp/login/">Log in</a></li>
+                {% endif %}
+
+
+
+           
             {% comment %} <li class="btn-trial"><a href="#" data-target="#login" data-toggle="modal">Sign in</a></li> {% endcomment %}
         </ul>
       </div>
