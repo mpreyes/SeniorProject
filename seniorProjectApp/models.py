@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Ye olde Database models.
 
@@ -40,8 +42,8 @@ class Links(models.Model):
 
 
 class Users(models.Model):
-    user = models.ForeignKey(User, unique=True, on_delete=models.CASCADE,default=999)
-    userID = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE,default=999)
+    #userID = models.AutoField(primary_key=True)
     degreeID = models.IntegerField()
 
 
@@ -51,4 +53,5 @@ class Progress(models.Model):
     notes = models.TextField()
     userID = models.ForeignKey(Users, on_delete=models.CASCADE)
     linkID = models.ForeignKey(Links, on_delete=models.CASCADE) 
+
 

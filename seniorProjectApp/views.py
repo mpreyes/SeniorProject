@@ -17,7 +17,6 @@ class SignUp(generic.CreateView):
     template_name = 'seniorProjectApp/signup.html'
 
 
-
 # def signup(request):
 #     return render(request,'seniorProjectApp/signup.html')
 #     #Signup MUST request a degree: Computer Science = 1
