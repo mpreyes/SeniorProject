@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Ye olde Database models.
 
@@ -19,7 +20,7 @@ class Courses(models.Model):
     courseDescription = models.CharField(max_length=400,default="default description")
     courseLink = models.CharField(max_length=100,default="links/")
     degreeID = models.ForeignKey(Degree, on_delete=models.CASCADE) 
-    level = models.IntegerField(default=1)
+    level = models.CharField(max_length=50,default="Freshman")
     
 
 
@@ -38,13 +39,9 @@ class Links(models.Model):
     topicID = models.ForeignKey(Topics, on_delete=models.CASCADE) 
 
 
-
-
 class Users(models.Model):
+    user = models.ForeignKey(User, unique=True, on_delete=models.CASCADE,default=999)
     userID = models.AutoField(primary_key=True)
-    userName = models.CharField(max_length=50)
-    password = models.CharField(max_length=50) #TODO: make this not a char field.
-    token = models.CharField(max_length=50)
     degreeID = models.IntegerField()
 
 

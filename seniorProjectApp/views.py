@@ -16,6 +16,8 @@ class SignUp(generic.CreateView):
     success_url = reverse_lazy('login')
     template_name = 'seniorProjectApp/signup.html'
 
+
+
 # def signup(request):
 #     return render(request,'seniorProjectApp/signup.html')
 #     #Signup MUST request a degree: Computer Science = 1
@@ -23,7 +25,9 @@ class SignUp(generic.CreateView):
 
 def dashboard(request, degreeID_id):
     #ERIN: add any field you want passed to the dashboard.html page
-
+    user_details = []
+    user_profile = request.user.get_profile()
+    
     #getting courses from computer science only
 
     #if changing degree, change degreeID for both
@@ -33,7 +37,7 @@ def dashboard(request, degreeID_id):
     #MR: set cache to pass in whatever level we want to show
     #MR TODO: Create a class to represent our entire class/link relationship
     #caches['levels'].set('level_freshman', level_freshman) 
-    context = {"degree_list": degree, "courses_list": courses}
+    context = {"user_details": user_details,"degree_list": degree, "courses_list": courses}
 
     return render(request,'seniorProjectApp/dashboard.html',context)
 

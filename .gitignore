@@ -1,5 +1,6 @@
 .vscode
 seniorProjectApp/__pycache__/*.pyc
 seniorProjectApp/migrations/__pycache__/*.pyc
+seniorProjectApp/migrations/*.py
 seniorproject/__pycache__/*.pyc
 seniorproject/settings.py
