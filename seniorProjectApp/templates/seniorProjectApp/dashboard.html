@@ -34,24 +34,8 @@
       here should be a div, section should be used to group elements that are related, 
       would be more helpful to use section for each "level" group of courses (fr, so, jr, sr) -->
   <section id="cta-2">
-    <h2 class="text-center">{{degree_list.degreeName}}: Dashboard</h2>
+    <h2 class="text-center">Dashboard - {{degree_list.degreeName}}</h2>
   </section>
-
-  <!-- TODO remove links button once we link individual courses to the links page-->
-  <a href="/seniorProjectApp/links/">
-    <button type="button" class="btn btn-primary">Links page</button>
-  </a>
-
-  <!-- freshman courses header bar, build into loop once working -->
-  <!-- TODO make background the light blue? or lighter blue? -->
-  <div class="container">
-
-    <div class="row">
-      <div class="col-sm-12 col-lg-6">
-        <h2 class="text-center">FRESHMAN LEVEL COURSES</h2>
-      </div>
-    </div>
-  </div>
 
   <div class="container">
     <!-- EB: loop going through course levels (fr, so, jr, sr) -->
