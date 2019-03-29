@@ -47,6 +47,6 @@ def links(request,degreeID_id,courseID):
 
     links = Links.objects.all()
    
-    context = {"courses":courses, "topics": topics, "links": links, "checked_bool": True }
+    context = {"courses":courses, "topics": topics, "links": links, "checked": False }
     return render(request,'seniorProjectApp/links.html',context)
 

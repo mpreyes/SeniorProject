@@ -37,13 +37,13 @@ class Topics(models.Model):
 #Link to Geeks2Geeks article on loops
 class Links(models.Model):
     linksID = models.AutoField(primary_key=True)
-    linkName = models.CharField(max_length=100)
+    linkName = models.CharField(max_length=100) #linkName
+    #linkUrl = models.CharField(max_length=100, default="Link here")
     topicID = models.ForeignKey(Topics, on_delete=models.CASCADE) 
 
 
 class Users(models.Model):
-    user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE,default=999)
-    #userID = models.AutoField(primary_key=True)
+    userID = models.OneToOneField(User, unique=True, on_delete=models.CASCADE,default=999)
     degreeID = models.IntegerField()
 
 

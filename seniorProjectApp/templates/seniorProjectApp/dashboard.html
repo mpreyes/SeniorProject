@@ -20,7 +20,7 @@
                        <li><a href="/seniorProjectApp/1/">Hi {{ user.username }}!</a></li>
                   <li class="btn-trial"><a href="{% url 'logout' %}">logout</a></li>
                 {% else %}
-                  <li><a href="">Yo u are not logged in</a></li>
+                  <li><a href="">You are not logged in</a></li>
                  <li class="btn-trial"> <a href="{% url 'login' %}">login</a></li>
                 {% endif %}
         </ul>
