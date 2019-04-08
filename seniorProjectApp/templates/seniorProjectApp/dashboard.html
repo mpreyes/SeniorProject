@@ -1,7 +1,6 @@
 {% extends './default.html' %}
 {% load static %}
 
-
 {% block content %}
   <!--Navigation bar-->
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -16,110 +15,87 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-                {% if user.is_authenticated %}
-                       <li><a href="/seniorProjectApp/1/">Hi {{ user.username }}!</a></li>
-                  <li class="btn-trial"><a href="{% url 'logout' %}">logout</a></li>
-                {% else %}
-                  <li><a href="">You are not logged in</a></li>
-                 <li class="btn-trial"> <a href="{% url 'login' %}">login</a></li>
-                {% endif %}
+          {% if user.is_authenticated %}
+                  <li><a href="/seniorProjectApp/1/">Hi {{ user.username }}!</a></li>
+            <li class="btn-trial"><a href="{% url 'logout' %}">logout</a></li>
+          {% else %}
+            <li><a href="">You are not logged in</a></li>
+            <li class="btn-trial"> <a href="{% url 'login' %}">login</a></li>
+          {% endif %}
         </ul>
       </div>
     </div>
   </nav>
   <!--/ Navigation bar-->
 
-  <!-- TODO figure out if we need the "section" attribute or if we can just use a div,
-      here should be a div, section should be used to group elements that are related, 
-      would be more helpful to use section for each "level" group of courses (fr, so, jr, sr) -->
-  <section id="cta-2">
-    <h2 class="text-center">Dashboard - {{degree_list.degreeName}}</h2>
-  </section>
+  <div class="dashheader">
+      <h1 class="text-center">DASHBOARD - {{degree_list.degreeName}}</h1>
+  </div>
 
-  <div class="container">
-    <!-- EB: loop going through course levels (fr, so, jr, sr) -->
-    <!-- EB: begin loop for levels -->
+  <div class="container dash">
+    <div class="row">
+      <div class="col-12"><h2 class="text-center">FRESHMAN LEVEL COURSES</h2></div>
+      <div class="list-group">
+        {% for course in courses_list%}
+          {% if course.level == 'Freshman'%}
+            <div class="col-xs-12 col-sm-6 col-lg-4 ">
+              <a href="/seniorProjectApp/{{degree_list.degreeID}}/{{course.courseID}}" class="list-group-item">
+                <div class="coursepanelheading">{{course.courseName}}</div>
+                <div class="coursepanelbody">{{course.courseDescription}}</div>
+              </a>
+            </div>
+          {% endif%} 
+        {% endfor %}
+      </div>
+    </div>
 
     <div class="row">
-        <div class="col-12"><h2 class="text-center">Freshman LEVEL COURSES</h2></div>
-
+      <div class="col-12"><h2 class="text-center">SOPHOMORE LEVEL COURSES</h2></div>
+      <div class="list-group">
         {% for course in courses_list%}
-            {% if course.level == 'Freshman'%}
-          <!-- EB: loop needs to go through all the courses specific to an outside loop going through course levels (fr, so, jr,sr) -->
-                  <div class="col-sm-12 col-lg-4 class-list">
-                        <a class="class_list" href="/seniorProjectApp/{{degree_list.degreeID}}/{{course.courseID}}">
-                          <!-- EB: figure out why styling isn't working -->
-                            <div class="panel panel-info">
-                              <div class="panel-heading">{{course.courseName}}</div>
-                                <div class="panel-body"> {{course.courseDescription}}</div>
-                              </div>
-                          </a>
-                    </div>
-              {% endif%} 
-            {% endfor %}
+          {% if course.level == 'Sophomore'%}
+            <div class="col-xs-12 col-sm-6 col-lg-4 ">
+              <a href="/seniorProjectApp/{{degree_list.degreeID}}/{{course.courseID}}" class="list-group-item">
+                <div class="coursepanelheading">{{course.courseName}}</div>
+                <div class="coursepanelbody">{{course.courseDescription}}</div>
+              </a>
+            </div>
+          {% endif%} 
+        {% endfor %}
       </div>
-
-
-
-
-      <div class="row">
-        <div class="col-12"><h2 class="text-center">Sophomore LEVEL COURSES</h2></div>
-
-        {% for course in courses_list%}
-            {% if course.level == 'Sophomore'%}
-          <!-- EB: loop needs to go through all the courses specific to an outside loop going through course levels (fr, so, jr,sr) -->
-                  <div class="col-sm-12 col-lg-4 class-list">
-                        <a class="class_list" href="/seniorProjectApp/{{degree_list.degreeID}}/{{course.courseID}}">
-                          <!-- EB: figure out why styling isn't working -->
-                            <div class="panel panel-info">
-                              <div class="panel-heading">{{course.courseName}}</div>
-                                <div class="panel-body"> {{course.courseDescription}}</div>
-                              </div>
-                          </a>
-                    </div>
-              {% endif%} 
-            {% endfor %}
-      </div>
-
-      <div class="row">
-        <div class="col-12"><h2 class="text-center">Junior LEVEL COURSES</h2></div>
-        {% for course in courses_list%}
-            {% if course.level == 'Junior'%}
-          <!-- EB: loop needs to go through all the courses specific to an outside loop going through course levels (fr, so, jr,sr) -->
-                  <div class="col-sm-12 col-lg-4 class-list">
-                        <a class="class_list" href="/seniorProjectApp/{{degree_list.degreeID}}/{{course.courseID}}">
-                          <!-- EB: figure out why styling isn't working -->
-                            <div class="panel panel-info">
-                              <div class="panel-heading">{{course.courseName}}</div>
-                                <div class="panel-body"> {{course.courseDescription}}</div>
-                              </div>
-                          </a>
-                    </div>
-              {% endif%} 
-            {% endfor %}
-      </div>
-
+    </div>
 
     <div class="row">
-        <div class="col-12"><h2 class="text-center">Senior LEVEL COURSES</h2></div>
-
+      <div class="col-12"><h2 class="text-center">JUNIOR LEVEL COURSES</h2></div>
+      <div class="list-group">
         {% for course in courses_list%}
-            {% if course.level == 'Senior'%}
-          <!-- EB: loop needs to go through all the courses specific to an outside loop going through course levels (fr, so, jr,sr) -->
-                  <div class="col-sm-12 col-lg-4 class-list">
-                        <a class="class_list" href="/seniorProjectApp/{{degree_list.degreeID}}/{{course.courseID}}">
-                          <!-- EB: figure out why styling isn't working -->
-                            <div class="panel panel-info">
-                              <div class="panel-heading">{{course.courseName}}</div>
-                                <div class="panel-body"> {{course.courseDescription}}</div>
-                              </div>
-                          </a>
-                    </div>
-              {% endif%} 
-            {% endfor %}
+          {% if course.level == 'Junior'%}
+            <div class="col-xs-12 col-sm-6 col-lg-4 ">
+              <a href="/seniorProjectApp/{{degree_list.degreeID}}/{{course.courseID}}" class="list-group-item">
+                <div class="coursepanelheading">{{course.courseName}}</div>
+                <div class="coursepanelbody">{{course.courseDescription}}</div>
+              </a>
+            </div>
+          {% endif%} 
+        {% endfor %}
       </div>
+    </div>
 
-
+    <div class="row">
+      <div class="col-12"><h2 class="text-center">SENIOR LEVEL COURSES</h2></div>
+      <div class="list-group">
+        {% for course in courses_list%}
+          {% if course.level == 'Senior'%}
+            <div class="col-xs-12 col-sm-6 col-lg-4 ">
+              <a href="/seniorProjectApp/{{degree_list.degreeID}}/{{course.courseID}}" class="list-group-item">
+                <div class="coursepanelheading">{{course.courseName}}</div>
+                <div class="coursepanelbody">{{course.courseDescription}}</div>
+              </a>
+            </div>
+          {% endif%} 
+        {% endfor %}
+      </div>
+    </div>
   </div>
   
 {% endblock %}
