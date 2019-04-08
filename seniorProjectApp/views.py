@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.core.cache import caches
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import ModelForm
 from django.urls import reverse_lazy
 from django.views import generic
 # Create your views here.
@@ -10,6 +11,11 @@ from seniorProjectApp.models import *
 def index(request):
     return render(request, 'seniorProjectApp/index.html')
 
+class ProgressForm(ModelForm):
+    class Meta:
+        model = Progress
+        fields = ['progressID', 'userID', 'linkID', 'isCompleted', 'notes']
+    
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
@@ -40,13 +46,30 @@ def dashboard(request, degreeID_id):
     return render(request,'seniorProjectApp/dashboard.html',context)
 
 def links(request,degreeID_id,courseID):
-
+    
+    
     courses = Courses.objects.filter(degreeID = degreeID_id)
     topics = Topics.objects.filter(courseID = courseID)
-    #progress = 
-
     links = Links.objects.all()
-   
-    context = {"courses":courses, "topics": topics, "links": links, "checked": False }
+
+    context = {"courses": courses, "topics": topics, "links": links, "checked": False} 
+
+    if request.method == 'POST':
+        print("got a post request")
+        form = ProgressForm(request.POST)
+       
+        if form.is_valid():
+            form.save()
+            print("form got saved")
+            context["form"] = form
+            
+            return render(request,'seniorProjectApp/links.html',context)
+    else:
+        print("Form did not get saved")
+        form = ProgressForm()
+    context["form"] = form
+        
+        
+    
     return render(request,'seniorProjectApp/links.html',context)
 

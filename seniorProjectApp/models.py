@@ -43,7 +43,7 @@ class Links(models.Model):
 
 
 class Users(models.Model):
-    userID = models.OneToOneField(User, unique=True, on_delete=models.CASCADE,default=999)
+    userID = models.AutoField(User, primary_key=True,default=999)
     degreeID = models.IntegerField()
 
 
