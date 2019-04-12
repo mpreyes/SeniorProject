@@ -34,95 +34,109 @@
   <!--/ Navigation bar-->
 
 
-
+<!-- EB: TODO remove "cta-2" formatting -->
   <section id="cta-2">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h2 class="text-center">COURSE TITLE {{courses.courseName}} </h2>
+          <!-- EB: TODO pull the correct course name-->
+          <h1 class="text-center">COURSE TITLE {{courses.courseName}}</h1>
 
+          <div class="row">
+            <div class="col-12">
+              <p class="instructions text-center">To check off your progress for each link, click on the notes 
+              button and<br/>write something you learned or want to remember from the resource.</p>
+            </div>
+          </div>
+          
           <!-- EB: TODO replace text -->
           <div class="row">
-            <div class="col-12">pull course description from the database and show here</div>
+            <div class="col-12">
+              <p>Add course description from the database and show here</p>
+            </div>
           </div>
 
           <div class="row">
           {% for topic in topics%}
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="list-group">
                 <!-- EB: TODO style heading -->
                 <h3 class="list-group-item-heading">{{topic.topicName}}</h3>
                 
-              {% for link in links %}
-                {% if topic.topicID == link.topicID_id %}
-                <p class="list-group-item-text">
-                    <!-- EB: toggle here ! -->
-                    <label class="containercheck"> 
-                      
+                <!-- EB: TODO zebra strips if possible? would need to add a counter in -->
+                {% for link in links %}
+                  {% if topic.topicID == link.topicID_id %}
+                  <p class="list-group-item-text">
+                      <div class="row">
+                        <div class="col-sm-3"> 
+                        <!-- EB: TODO float right -->
                         {% if checked %}
-                        <input type="checkbox" checked>
-                        <span class="checkmark"> </span>
-                          {% else %}
-                          <input type="checkbox">
-                          <span class="checkmark"></span>
-
-                        {% endif%}
-                        <a href='{{link.linkName}}' target=blank>{{link.linkName}}</a>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{link.linksID}}">Notes</button>
-                          </label>
-                             
-                          <!-- Modal -->
-                        <div class="modal fade" id="{{link.linksID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-scrollable" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalScrollableTitle">{{link.linkName}}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
+                          <!-- EB: TODO display filled in gold star (or blue) -->
+                          <div class="float-right">
+                              <p>CHECK PH</p>
+                          </div>
+                            {% else %}
+                              <!-- EB: TODO display empty star -->
+                              <div class="float-right">
+                                <p>UNCHECK PH</p>
                               </div>
-                              <div class="modal-body">
-                                    <a href="">{{link.linksID}}</a>
-                                    <form action="/seniorProjectApp/1/2/" method="post">
-                                        {% csrf_token %}
-                                            {{form}}
-                                         {% comment %} <label for="exampleFormControlTextarea1"></label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> {% endcomment %}
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                       <button type="submit" class="btn btn-primary">Save changes</button>
-                                          </form>
-                                  
-                                    {% comment %} <form>
-                                  <div class="form-group">
+                        </div>
+                        {% endif%}
+                        
+                        <!-- Link -->
+                        <div class="col-sm-6">
+                          <!-- EB: TODO change the displayed link to the link description, not the url -->
+                          <a href='{{link.linkName}}' target=blank>{{link.linkName}}</a>
+                        </div>
+                        
+                        <!-- Notes button -->
+                        <div class="col-sm-3">
+                          <button type="button" class="btn btn-primary notesbutton" data-toggle="modal" data-target="#{{link.linksID}}">
+                            <img src="{% static "seniorProjectApp/img/noteswhite.png" %}" class="img-responsive notesiconbutton"></button>
+                        </div>
+                      </div>
+                              
+                      <!-- Modal -->
+                      <div class="modal fade" id="{{link.linksID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalScrollableTitle">{{link.linkName}}</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <a href="">{{link.linksID}}</a>
+                              <form action="/seniorProjectApp/1/2/" method="post">
+                                  {% csrf_token %}
+                                      {{form}}
+                                    {% comment %} <label for="exampleFormControlTextarea1"></label>
+                                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> {% endcomment %}
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-primary">Save changes</button>
+                              </form>
+                              {% comment %} 
+                              <form>
+                                <div class="form-group">
                                   <label for="exampleFormControlTextarea1"></label>
                                   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 </div>
                               </form> {% endcomment %}
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                              </div>
-                              
-
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary">Save changes</button>
                             </div>
                           </div>
                         </div>
-
-
-
-
-
-
-
-                        <!-- EB: notes here ! -->
-                 
-                </p>
-                {% endif %}
-                {% endfor %}
+                      </div>
+                  </p>
+                  {% endif %}
+                  {% endfor %}
+                </div>
               </div>
-            </div>
-          {% endfor %}
+            {% endfor %}
 
           </div>
     
