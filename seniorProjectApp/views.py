@@ -14,8 +14,10 @@ def index(request):
 class ProgressForm(ModelForm):
     class Meta:
         model = Progress
-        fields = ['progressID', 'userID', 'linkID', 'isCompleted', 'notes']
-    
+        fields = ['progressID',  'linkID', 'isCompleted', 'notes']
+        
+
+
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
