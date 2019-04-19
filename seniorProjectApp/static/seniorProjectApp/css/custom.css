@@ -87,4 +87,13 @@
   font-style: italic;
 }
 
+.progress-star {
+  max-width: 3em;
+}
+
+.topic-row {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
   /****** END: LINKS STYLES *******/
