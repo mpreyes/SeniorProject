@@ -48,102 +48,92 @@
 
           <div class="row">
           {% for topic in topics%}
-            <div class="col-md-8">
+            <div class="col-md-10">
               <div class="list-group">
                 <!-- EB: TODO style heading -->
-                <h3 class="list-group-item-heading">{{topic.topicName}}</h3>
-                
-              {% for link in links %}
+                <div class="row topic-row">
+                  <div class="col-12">
+                    <h3 class="list-group-item-heading">{{topic.topicName}}</h3>
+                  </div>
+                </div>
+
+                {% for link in links %}
                   {% if topic.topicID == link.topicID_id %}
-                  <p class="list-group-item-text">
-                      <div class="row">
-                        <div class="col-sm-3"> 
-                        <!-- EB: TODO float right -->
-                        {% if checked %}
-                          <!-- EB: TODO display filled in gold star (or blue) -->
-                          <div class="float-right">
-                              <p>CHECK PH</p>
+                  <div class="row">
+                    <div class="col-sm-2"> 
+                      {% if checked %}
+                      <div class="text-center">
+                          <img src="{% static "seniorProjectApp/img/star.png" %}" class="progress-star">
+                      </div>
+                          {% else %}
+                          <div class="text-center">
+                            <img src="{% static "seniorProjectApp/img/staroutline.png" %}" class="progress-star">
                           </div>
-                            {% else %}
-                              <!-- EB: TODO display empty star -->
-                              <div class="float-right">
-                                <p>UNCHECK PH</p>
-                              </div>
-                        </div>
-                        {% endif%}
+                    </div>
+                    {% endif%}
 
-
-
-
-                        <a href='{{link.linkName}}' target=blank>{{link.linkName}}</a>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{link.linksID}}">Notes</button>
-                          </label>
+                    <div class="col-sm-9">
+                      <a href='{{link.linkName}}' target=blank>{{link.linkName}}</a>                            
+                    </div>
+                    
+                    <div class="col-sm-1">
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{link.linksID}}">Notes</button>
+                    </div>
+                  </div>
+                </div>
                              
-                          <!-- Modal -->
-                        <div class="modal fade" id="{{link.linksID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-scrollable" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalScrollableTitle">{{link.linkName}}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                    <a href="">{{link.linksID}}</a>
+                <!-- Modal -->
+                <div class="modal fade" id="{{link.linksID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalScrollableTitle">{{link.linkName}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                            <a href="">{{link.linksID}}</a>
+                            <form action="/seniorProjectApp/1/2/" method="post">
+                                {% csrf_token %}
+                                      <form action="/seniorProjectApp/1/2/" method="post">
+                                {% csrf_token %}
 
-                                    <form action="/seniorProjectApp/1/2/" method="post">
-                                        {% csrf_token %}
-                                             <form action="/seniorProjectApp/1/2/" method="post">
-                                        {% csrf_token %}
+                                {{ form.non_field_errors }}
+                                  <input type="hidden" name="userID" value="{{user.id }}"/>
+                                  <input type="hidden" name="linkID" value="{{link.linksID}}" />
+                                  <input type="hidden" name="progressID" value="NULL" />
 
+                                  <div class="fieldWrapper">
+                                      {{ form.sender.errors }}
+                                      <label for="{{ form.sender.id_for_label }}">isCompleted:</label>
+                                      {{ form.isCompleted }}
+                                      
+                                  </div>
+                                  <div class="fieldWrapper">
+                                      {{ form.cc_myself.errors }}
+                                      <label for="{{ form.cc_myself.id_for_label }}">notes</label>
+                                      {{ form.notes }}
+                                  </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>   
+                              </form>
                           
-                                        {{ form.non_field_errors }}
-                                          <input type="hidden" name="userID" value="{{user.id }}"/>
-                                          <input type="hidden" name="linkID" value="{{link.linksID}}" />
-                                          <input type="hidden" name="progressID" value="NULL" />
-
-                                          <div class="fieldWrapper">
-                                              {{ form.sender.errors }}
-                                              <label for="{{ form.sender.id_for_label }}">isCompleted:</label>
-                                              {{ form.isCompleted }}
-                                             
-                                          </div>
-                                          <div class="fieldWrapper">
-                                              {{ form.cc_myself.errors }}
-                                              <label for="{{ form.cc_myself.id_for_label }}">notes</label>
-                                              {{ form.notes }}
-                                          </div>
-                                       
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                            
-                                          </form>
-                                  
-                                    {% comment %} <form>
-                                  <div class="form-group">
-                                  <label for="exampleFormControlTextarea1"></label>
-                                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                </div>
-                              </form> {% endcomment %}
-                              </div>
-
-
-                            </div>
+                          {% comment %} <form>
+                          <div class="form-group">
+                          <label for="exampleFormControlTextarea1"></label>
+                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                           </div>
-                        </div>
-
-
-
-
-
-
-
-                        <!-- EB: notes here ! -->
+                          </form> {% endcomment %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
                  
-                </p>
+                
                 {% endif %}
                 {% endfor %}
               </div>
