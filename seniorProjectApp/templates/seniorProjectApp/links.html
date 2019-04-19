@@ -83,14 +83,36 @@
                               </div>
                               <div class="modal-body">
                                     <a href="">{{link.linksID}}</a>
+
                                     <form action="/seniorProjectApp/1/2/" method="post">
-                                        {% csrf_token %}
-                                            {{form}}
-                                         {% comment %} <label for="exampleFormControlTextarea1"></label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> {% endcomment %}
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                       <button type="submit" class="btn btn-primary">Save changes</button>
-                                          </form>
+                                          {% csrf_token %}
+                                              <form action="/seniorProjectApp/1/2/" method="post">
+                                          {% csrf_token %}
+
+                            
+                                          {{ form.non_field_errors }}
+                                            <input type="hidden" name="userID" value="{{user.id }}"/>
+                                            <input type="hidden" name="linkID" value="{{link.linksID}}" />
+                                            <input type="hidden" name="progressID" value="NULL" />
+
+                                            <div class="fieldWrapper">
+                                                {{ form.sender.errors }}
+                                                <label for="{{ form.sender.id_for_label }}">isCompleted:</label>
+                                                {{ form.isCompleted }}
+                                            </div>
+
+                                            <div class="fieldWrapper">
+                                                {{ form.cc_myself.errors }}
+                                                <label for="{{ form.cc_myself.id_for_label }}">notes</label>
+                                                {{ form.notes }}
+                                            </div>
+                                            
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                              
+                                      </form>
                                   
                                     {% comment %} <form>
                                   <div class="form-group">
@@ -99,11 +121,7 @@
                                 </div>
                               </form> {% endcomment %}
                               </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                              </div>
-                              
+
 
                             </div>
                           </div>

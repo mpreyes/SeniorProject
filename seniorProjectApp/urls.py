@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:degreeID_id>/', views.dashboard, name='dashboard'),
     path('<int:degreeID_id>/<int:courseID>/', views.links, name='links'),
     
+    
 ]
