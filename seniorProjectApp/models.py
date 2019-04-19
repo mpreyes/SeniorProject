@@ -24,7 +24,6 @@ class Courses(models.Model):
     degreeID = models.ForeignKey(Degree, on_delete=models.CASCADE) 
     level = models.CharField(max_length=50,default="Freshman")
     
-
 #Loops
 class Topics(models.Model):
     topicID = models.AutoField(primary_key=True)
@@ -51,7 +50,6 @@ class CustomUser(AbstractUser):
     degreeID = models.IntegerField()
     def __str__(self):
         return self.degreeID
-        
 
 
 class Progress(models.Model):
