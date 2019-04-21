@@ -20,10 +20,11 @@ class Courses(models.Model):
     courseID = models.AutoField(primary_key=True)
     courseName = models.CharField(max_length=100)
     courseDescription = models.CharField(max_length=400,default="default description")
-    courseLink = models.CharField(max_length=100,default="links/") #is this needed? remove
+    #courseLink = models.CharField(max_length=100,default="links/") #is this needed? remove
     degreeID = models.ForeignKey(Degree, on_delete=models.CASCADE) 
     level = models.CharField(max_length=50,default="Freshman")
     
+
 #Loops
 class Topics(models.Model):
     topicID = models.AutoField(primary_key=True)
@@ -36,20 +37,24 @@ class Topics(models.Model):
 class Links(models.Model):
     linksID = models.AutoField(primary_key=True)
     linkName = models.CharField(max_length=100) #linkName
-    #linkUrl = models.CharField(max_length=100, default="Link here")
+    linkUrl = models.CharField(max_length=100, default=" ")
     topicID = models.ForeignKey(Topics, on_delete=models.CASCADE) 
 
 
-# class Users(models.Model):
-#     userID = models.AutoField(User, primary_key=True,default=999)
-#     degreeID = models.IntegerField()
 
 
 class CustomUser(AbstractUser):
-    # userID = models.AutoField(User, primary_key=True,default=999)
-    degreeID = models.IntegerField()
+   
+    DEGREE_CHOICES = (
+    ('1','Computer Science'),
+    ('2', 'Software Engineering'),
+    ('3','Web Development'),
+    )
+    #degreeID = models.IntegerField()
+    degreeID = models.CharField(max_length=1, choices=DEGREE_CHOICES, default='1')
     def __str__(self):
         return self.degreeID
+        
 
 
 class Progress(models.Model):

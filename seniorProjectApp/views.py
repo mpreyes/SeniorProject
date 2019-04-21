@@ -45,32 +45,28 @@ def dashboard(request, degreeID_id):
 def links(request,degreeID_id,courseID):
     
     
-    #courses = Courses.objects.filter(degreeID = degreeID_id)
-    
+    courses = Courses.objects.get(courseID = courseID)
     topics = Topics.objects.filter(courseID = courseID)
-
-    selected_course = Courses.objects.get(courseID = courseID)
     links = Links.objects.all()
     progress = Progress.objects.all()
-
-    context = {"course": selected_course, "topics": topics, "links": links, "checked": False, "zippyboi": zip(links,progress)} 
-    progress_user = Progress.objects.filter(linkID_id = 2)
+    link_progress = zip(links,progress)
+    context = {"course": courses, "topics": topics, "links": links, "link_progress": link_progress} 
 
     if request.method == 'POST':
         print("got a post request")
-        form = ProgressForm(request.POST, instance = progress_user)
-        #form = ProgressForm(request.POST)
+        form = ProgressForm(request.POST)
+        
         if form.is_valid():
             form.save()
             print("form got saved")
             context["form"] = form
-
             
             return render(request,'seniorProjectApp/links.html',context)
     else:
         print("Form did not get saved")
         form = ProgressForm()
     context["form"] = form
+        
         
     
     return render(request,'seniorProjectApp/links.html',context)
