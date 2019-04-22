@@ -40,7 +40,7 @@
         {% for course in courses_list%}
           {% if course.level == 'Freshman'%}
             <div class="col-xs-12 col-sm-6 col-lg-4 ">
-              <a href="/seniorProjectApp/{{degree_list.degreeID}}/{{course.courseID}}" class="list-group-item">
+              <a href="/seniorProjectApp/{{user.id}}/{{degree_list.degreeID}}/{{course.courseID}}" class="list-group-item">
                 <div class="coursepanelheading">{{course.courseName}}</div>
                 <div class="coursepanelbody">{{course.courseDescription}}</div>
               </a>
@@ -56,7 +56,7 @@
         {% for course in courses_list%}
           {% if course.level == 'Sophomore'%}
             <div class="col-xs-12 col-sm-6 col-lg-4 ">
-              <a href="/seniorProjectApp/{{degree_list.degreeID}}/{{course.courseID}}" class="list-group-item">
+              <a href="/seniorProjectApp/{{user.id}}/{{degree_list.degreeID}}/{{course.courseID}}" class="list-group-item">
                 <div class="coursepanelheading">{{course.courseName}}</div>
                 <div class="coursepanelbody">{{course.courseDescription}}</div>
               </a>
@@ -72,7 +72,7 @@
         {% for course in courses_list%}
           {% if course.level == 'Junior'%}
             <div class="col-xs-12 col-sm-6 col-lg-4 ">
-              <a href="/seniorProjectApp/{{degree_list.degreeID}}/{{course.courseID}}" class="list-group-item">
+              <a href="/seniorProjectApp/{{user.id}}/{{degree_list.degreeID}}/{{course.courseID}}" class="list-group-item">
                 <div class="coursepanelheading">{{course.courseName}}</div>
                 <div class="coursepanelbody">{{course.courseDescription}}</div>
               </a>
@@ -88,7 +88,7 @@
         {% for course in courses_list%}
           {% if course.level == 'Senior'%}
             <div class="col-xs-12 col-sm-6 col-lg-4 ">
-              <a href="/seniorProjectApp/{{degree_list.degreeID}}/{{course.courseID}}" class="list-group-item">
+              <a href="/seniorProjectApp/{{user.id}}/{{degree_list.degreeID}}/{{course.courseID}}" class="list-group-item">
                 <div class="coursepanelheading">{{course.courseName}}</div>
                 <div class="coursepanelbody">{{course.courseDescription}}</div>
               </a>

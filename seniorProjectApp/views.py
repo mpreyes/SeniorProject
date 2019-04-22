@@ -24,13 +24,15 @@ class SignUp(generic.CreateView):
 
 def redirectme(request):
     degreeID  = 1
+    userID = 1
     if request.user.is_authenticated:
-        degreeID = request.user.id
+        degreeID = request.user.degreeID
+        userID = request.user.id
 
-    return redirect("/seniorProjectApp/"  + str(degreeID) + "/")
+    return redirect("/seniorProjectApp/"  + str(userID) + "/" + str(degreeID)+ "/")
 
 
-def dashboard(request,degreeID):
+def dashboard(request,userID_id,degreeID):
     #ERIN: add any field you want passed to the dashboard.html page
 
     
@@ -49,16 +51,20 @@ def dashboard(request,degreeID):
     return render(request,'seniorProjectApp/dashboard.html',context)
     
 
-def links(request,degreeID_id,courseID):
-    testUser = 2
+def links(request,userID_id,degreeID_id,courseID):
+    #testUser = 1
     
     courses = Courses.objects.get(courseID = courseID)
     topics = Topics.objects.filter(courseID = courseID)
 
 
     links = Links.objects.all()
-    progress = Progress.objects.filter(userID = testUser)
+    progress = Progress.objects.filter(userID = userID_id)
     link_progress = list(zip(links,progress))
+    for i in links:
+        print(i.linksID)
+    for j in progress:
+        print(j.notes)
     for i,j in link_progress:
         print(i.linksID,j.progressID, j.isCompleted)
 
@@ -68,17 +74,16 @@ def links(request,degreeID_id,courseID):
     return render(request,'seniorProjectApp/links.html',context)
 
 
-def progress(request,degreeID_id,courseID,linksID, progressID):
-    testUser = 2
+def progress(request,userID_id,degreeID_id,courseID,linksID, progressID):
+    #testUser = 1
     courses = Courses.objects.get(courseID = courseID)
     topics = Topics.objects.filter(courseID = courseID)
-    print(testUser,linksID,progressID)
-    
-    progress = Progress.objects.get(userID_id = testUser,linkID_id = linksID,progressID = progressID)
+
+    user =  CustomUser.objects.get(id = userID_id)
+    progress = Progress.objects.get(userID_id = userID_id,linkID_id = linksID,progressID = progressID)
     link = Links.objects.get( linksID = linksID)
-    context = {"degreeID": degreeID_id,"course": courses, "topics": topics, "link": link, "progress": progress} 
-    print("notes " + str(progress.notes))
-    print("isCompleted " + str(progress.isCompleted))
+    context = {"user" : user, "degreeID": degreeID_id,"course": courses, "topics": topics, "link": link, "progress": progress} 
+
     if request.method == 'POST':
         print("got a post request")
         #instance = get_object_or_404(Progress,linkID = linksID)
