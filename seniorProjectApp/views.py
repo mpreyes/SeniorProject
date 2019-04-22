@@ -48,9 +48,13 @@ def links(request,degreeID_id,courseID):
     
     courses = Courses.objects.get(courseID = courseID)
     topics = Topics.objects.filter(courseID = courseID)
+
+
     links = Links.objects.all()
     progress = Progress.objects.filter(userID = testUser)
     link_progress = list(zip(links,progress))
+    for i,j in link_progress:
+        print(i.linksID,j.progressID, j.isCompleted)
     context = {"degreeID": degreeID_id, "course": courses, "topics": topics, "links": links, "link_progress": link_progress} 
     print(progress)
 
@@ -61,20 +65,17 @@ def progress(request,degreeID_id,courseID,linksID):
     testUser = 2
     courses = Courses.objects.get(courseID = courseID)
     topics = Topics.objects.filter(courseID = courseID)
-    progress = Progress.objects.get(userID_id = testUser,linkID = linksID)
-    link = Links.objects.filter(linksID = linksID)
-    print(progress.isCompleted)
     
+    progress = Progress.objects.get(userID_id = testUser,linkID = linksID)
+    link = Links.objects.get(linksID = linksID)
     context = {"degreeID": degreeID_id,"course": courses, "topics": topics, "link": link, "progress": progress} 
     print("notes " + str(progress.notes))
     print("isCompleted " + str(progress.isCompleted))
     if request.method == 'POST':
         print("got a post request")
         #instance = get_object_or_404(Progress,linkID = linksID)
-        progress = Progress.objects.get(userID_id = testUser,linkID = linksID)
-        
         form = ProgressForm(request.POST,instance = progress)
-        
+        print(form.is_valid())
         if form.is_valid():
             form.save()
             print("form got saved")

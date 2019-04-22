@@ -52,24 +52,27 @@
           <div class="row">
             <div class="col-12">
               <p class="text-center"><i>  Take your notes below!</i></p>
+            
             </div>
           </div>
 
         <div class="row">
-        deg:{{degreeID}} coru:{{course.courseID}}
-                {{link.0.linksID}} {{progress.notes}} us:{{user.id}} {{progress.0.isCompleted}} {{progress.0.notes}}
+        PROGRESS ID :{{progress.progressID}}
+          userID: {{user.id}} iscompleted: {{progress.isCompleted}}  notes: {{progress.notes}} 
                 
                   <form method="post">
                     {% csrf_token %}
                        {{ form.non_field_errors }}
                          <input type="hidden" name="userID" value="{{user.id }}"/>
-                            <input type="hidden" name="linkID" value="{{link.0.linksID}}" />
+                            <input type="hidden" name="linkID" value="{{link.linksID}}" />
                             <input type="hidden" name="progressID" value="NULL" />
                             <div class="fieldWrapper">
 
                                 {{ form.sender.errors }}
                                 <label for="{{ form.sender.id_for_label }}">isCompleted:</label>
+                                 <td>{% if progress.isCompleted == True %}&#10004;{% else %}&times;{% endif %}</td>
                                 {{ form.isCompleted }}
+                                
                                 
                             </div>
                     
@@ -77,12 +80,6 @@
                                 {{ form.cc_myself.errors }}
                                 <label for="{{ form.cc_myself.id_for_label }}">notes</label>
                                  {{ form.notes }}
-
-                                {% comment %} {% if progress.notes == None%}
-                                {{ form.notes }}
-                                {% else %}
-                                {{ progress.notes}}
-                                {% endif %}   {% endcomment %}
                             </div>
                     
                     <button type="button" class="btn btn-secondary"><a href="/seniorProjectApp/{{degreeID}}/{{course.courseID}}/">Back</a></button>
