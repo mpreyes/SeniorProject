@@ -50,7 +50,7 @@ def links(request,degreeID_id,courseID):
     topics = Topics.objects.filter(courseID = courseID)
     links = Links.objects.all()
     progress = Progress.objects.filter(userID = testUser)
-    link_progress = zip(links,progress)
+    link_progress = list(zip(links,progress))
     context = {"degreeID": degreeID_id, "course": courses, "topics": topics, "links": links, "link_progress": link_progress} 
 
     # if request.method == 'POST':

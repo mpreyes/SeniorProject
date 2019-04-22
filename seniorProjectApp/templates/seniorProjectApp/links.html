@@ -66,9 +66,9 @@
                   </div>
                 </div>
               
-                {{topic.topicID}} 
+          
                 {% for lp in link_progress %}
-                  {{lp.0.topicID_id}}
+           
                {% if topic.topicID == lp.0.topicID_id %} 
                      
                   <div class="row">
@@ -90,7 +90,7 @@
                     </div>
                     
                     <div class="col-sm-1">
-                       <button type="button" class="btn btn-primary" ><a href="/seniorProjectApp/{{degreeID}}/{{course.courseID}}/{{lp.0.linksID}}/">Notes {{lp.0.linksID}}</button>
+                       <a href="/seniorProjectApp/{{degreeID}}/{{course.courseID}}/{{lp.0.linksID}}/"><button type="button" class="btn btn-primary" >Notes</button></a>
                     </div>
                   </div>
                 </div>
