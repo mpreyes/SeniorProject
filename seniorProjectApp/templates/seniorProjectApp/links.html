@@ -33,14 +33,11 @@
   </nav>
   <!--/ Navigation bar-->
 
-
-
-
-  <section id="cta-2">
+  <section id="links">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h2 class="text-center">{{course.courseName}}</h2>
+          <h1 class="coursetitle text-center">{{course.courseName}}</h1>
           <div class="row">
             <div class="col-12">
               <p class="text-center">{{course.courseDescription}}</p>
@@ -57,7 +54,6 @@
             {% for topic in topics%}
             <div class="col-md-10">
               <div class="list-group">
-                <!-- EB: TODO style heading -->
                 <div class="row topic-row">
                   <div class="col-12">
                     <h3 class="list-group-item-heading">{{topic.topicName}}</h3>
@@ -84,12 +80,12 @@
                   </div>
                   
                   <!-- link -->
-                  <div class="col-sm-9">
+                  <div class="col-sm-6">
                     <a href='{{lp.0.linkUrl}}' target=blank>{{lp.0.linkName}}</a>                       
                   </div>
               
                   <!-- button to save progress -->
-                  <div class="col-sm-1">
+                  <div class="col-sm-3">
                       <a href="/seniorProjectApp/{{degreeID}}/{{course.courseID}}/{{lp.1.linkID_id}}/{{lp.1.progressID}}/">
                       <button type="button" class="btn btn-primary" >Notes</button>
                     </a>
