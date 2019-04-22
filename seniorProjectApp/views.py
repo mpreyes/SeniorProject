@@ -55,19 +55,21 @@ def links(request,degreeID_id,courseID):
     link_progress = list(zip(links,progress))
     for i,j in link_progress:
         print(i.linksID,j.progressID, j.isCompleted)
+
     context = {"degreeID": degreeID_id, "course": courses, "topics": topics, "links": links, "link_progress": link_progress} 
     print(progress)
 
     return render(request,'seniorProjectApp/links.html',context)
 
 
-def progress(request,degreeID_id,courseID,linksID):
+def progress(request,degreeID_id,courseID,linksID, progressID):
     testUser = 2
     courses = Courses.objects.get(courseID = courseID)
     topics = Topics.objects.filter(courseID = courseID)
+    print(testUser,linksID,progressID)
     
-    progress = Progress.objects.get(userID_id = testUser,linkID = linksID)
-    link = Links.objects.get(linksID = linksID)
+    progress = Progress.objects.get(userID_id = testUser,linkID_id = linksID,progressID = progressID)
+    link = Links.objects.get( linksID = linksID)
     context = {"degreeID": degreeID_id,"course": courses, "topics": topics, "link": link, "progress": progress} 
     print("notes " + str(progress.notes))
     print("isCompleted " + str(progress.isCompleted))
