@@ -42,10 +42,18 @@
         <div class="col-lg-12">
           <h2 class="text-center">{{course.courseName}} </h2>
 
-          {% comment %} <!-- EB: TODO replace text -->
+          {% comment %} <!-- EB: TODO replace text --> {% endcomment %}
           <div class="row">
-            <div class="col-12">pull course description from the database and show here</div>
-          </div> {% endcomment %}
+            <div class="col-12">
+              <p class="text-center">course description from the database</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <p class="text-center"><i>To save your progress, click on the Notes button and save a note!</i></p>
+            </div>
+          </div>
 
           <div class="row">
           {% for topic in topics%}
@@ -95,19 +103,20 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
+                       {{course.courseID}}
                       <div class="modal-body">
-                            <a href="">{{z.0.linksID}}</a>
+                            <a href="">{{lp.0.linksID}}</a>
                             <form action="/seniorProjectApp/1/2/" method="post">
                                 {% csrf_token %}
                                       <form action="/seniorProjectApp/1/2/" method="post">
                                 {% csrf_token %}
-
+                                 
                                 {{ form.non_field_errors }}
                                   <input type="hidden" name="userID" value="{{user.id }}"/>
                                   <input type="hidden" name="linkID" value="{{lp.0.linksID}}" />
                                   <input type="hidden" name="progressID" value="NULL" />
 
-                                  <div class="fieldWrapper">
+                                   <div class="fieldWrapper">
                                       {{ form.sender.errors }}
                                       <label for="{{ form.sender.id_for_label }}">isCompleted:</label>
                                       {{ form.isCompleted }}
@@ -140,7 +149,6 @@
                     </div>
                   </div>
                 </div>
-                 
                 
                 {% endif %}
                 {% endfor %}

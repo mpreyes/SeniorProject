@@ -25,13 +25,14 @@ class SignUp(generic.CreateView):
 
 
 
-def dashboard(request, degreeID_id):
+def dashboard(request,id, degreeID_id):
     #ERIN: add any field you want passed to the dashboard.html page
     user_details = []
     
     #getting courses from computer science only
 
     #if changing degree, change degreeID for both
+    user = CustomUser.objects.get(id = id)
     degree = Degree.objects.get(degreeID = degreeID_id)
     courses = Courses.objects.filter(degreeID = degreeID_id)
 
