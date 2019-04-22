@@ -74,6 +74,7 @@
                   <div class="row">
                     <div class="col-sm-2"> 
                       {{lp.1.isCompleted }} progressID: {{lp.1.progressID}}  linkID: {{lp.0.linksID}}
+
                       {% if lp.1.isCompleted == True and topic.topicID == lp.0.topicID_id %}
                       <div class="text-center">
                           <img src="{% static "seniorProjectApp/img/star.png" %}" class="progress-star">

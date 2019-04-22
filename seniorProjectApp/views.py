@@ -17,24 +17,29 @@ def index(request):
 #     return render(request,'seniorProjectApp/signup.html')
 #     #Signup MUST request a degree: Computer Science = 1
 
-
 class SignUp(generic.CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'seniorProjectApp/signup.html'
 
+def redirectme(request):
+    degreeID  = 1
+    if request.user.is_authenticated:
+        degreeID = request.user.id
+
+    return redirect("/seniorProjectApp/"  + str(degreeID) + "/")
 
 
-def dashboard(request,degreeID_id):
+def dashboard(request,degreeID):
     #ERIN: add any field you want passed to the dashboard.html page
 
     
     #getting courses from computer science only
-
+    
     #if changing degree, change degreeID for both
 
-    degree = Degree.objects.get(degreeID = degreeID_id)
-    courses = Courses.objects.filter(degreeID = degreeID_id)
+    degree = Degree.objects.get(degreeID = degreeID)
+    courses = Courses.objects.filter(degreeID = degreeID)
 
     #MR: set cache to pass in whatever level we want to show
     #MR TODO: Create a class to represent our entire class/link relationship
@@ -42,6 +47,7 @@ def dashboard(request,degreeID_id):
     context = { "degree_list": degree, "courses_list": courses}
 
     return render(request,'seniorProjectApp/dashboard.html',context)
+    
 
 def links(request,degreeID_id,courseID):
     testUser = 2
