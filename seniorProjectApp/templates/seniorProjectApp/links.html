@@ -40,23 +40,21 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h2 class="text-center">{{course.courseName}} </h2>
-
-          {% comment %} <!-- EB: TODO replace text --> {% endcomment %}
+          <h2 class="text-center">{{course.courseName}}</h2>
           <div class="row">
             <div class="col-12">
-              <p class="text-center">course description from the database</p>
+              <p class="text-center">{{course.courseDescription}}</p>
             </div>
           </div>
 
           <div class="row">
             <div class="col-12">
-              <p class="text-center"><i>To save your progress, click on the Notes button and save a note!</i></p>
+              <p class="text-center"><i>* To save your progress, click on the Notes button and save a note! *</i></p>
             </div>
           </div>
 
           <div class="row">
-          {% for topic in topics%}
+            {% for topic in topics%}
             <div class="col-md-10">
               <div class="list-group">
                 <!-- EB: TODO style heading -->
@@ -66,44 +64,44 @@
                   </div>
                 </div>
               
-          
                 {% for lp in link_progress %}
            
-               {% if topic.topicID == lp.0.topicID_id %} 
+                {% if topic.topicID == lp.0.topicID_id %} 
                      
-                  <div class="row">
-                    <div class="col-sm-2"> 
-                      {{lp.1.isCompleted }} progressID: {{lp.1.progressID}}  linkID: {{lp.0.linksID}}
-                      {% if lp.1.isCompleted == True and topic.topicID == lp.0.topicID_id %}
+                <div class="row">
+                  <!-- progress star -->
+                  <div class="col-sm-2"> 
+                    {% comment %} {{lp.1.isCompleted }} progressID: {{lp.1.progressID}}  linkID: {{lp.0.linksID}} {% endcomment %}
+                    {% if lp.1.isCompleted == True and topic.topicID == lp.0.topicID_id %}
                       <div class="text-center">
-                          <img src="{% static "seniorProjectApp/img/star.png" %}" class="progress-star">
+                        <img src="{% static "seniorProjectApp/img/star.png" %}" class="progress-star">
                       </div>
-                          {% else %}
+                        {% else %}
                           <div class="text-center">
                             <img src="{% static "seniorProjectApp/img/staroutline.png" %}" class="progress-star">
                           </div>
-                    </div>
                     {% endif%}
-
-                    <div class="col-sm-9">
-                      <a href='{{lp.0.linkUrl}}' target=blank>{{lp.0.linkName}}</a>    
-                                            
-                    </div>
-                
-                    <div class="col-sm-1">
-                       <a href="/seniorProjectApp/{{degreeID}}/{{course.courseID}}/{{lp.1.linkID_id}}/{{lp.1.progressID}}/"><button type="button" class="btn btn-primary" >Notes</button></a>
-                    </div>
+                  </div>
+                  
+                  <!-- link -->
+                  <div class="col-sm-9">
+                    <a href='{{lp.0.linkUrl}}' target=blank>{{lp.0.linkName}}</a>                       
+                  </div>
+              
+                  <!-- button to save progress -->
+                  <div class="col-sm-1">
+                      <a href="/seniorProjectApp/{{degreeID}}/{{course.courseID}}/{{lp.1.linkID_id}}/{{lp.1.progressID}}/">
+                      <button type="button" class="btn btn-primary" >Notes</button>
+                    </a>
                   </div>
                 </div>
-                             
-            
+              </div>
                 
                 {% endif %}
                 {% endfor %}
               </div>
             </div>
-          {% endfor %}
-
+            {% endfor %}
           </div>
     
         </div>

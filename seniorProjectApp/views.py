@@ -44,7 +44,7 @@ def dashboard(request,degreeID_id):
     return render(request,'seniorProjectApp/dashboard.html',context)
 
 def links(request,degreeID_id,courseID):
-    testUser = 2
+    testUser = 1
     
     courses = Courses.objects.get(courseID = courseID)
     topics = Topics.objects.filter(courseID = courseID)
@@ -63,7 +63,7 @@ def links(request,degreeID_id,courseID):
 
 
 def progress(request,degreeID_id,courseID,linksID, progressID):
-    testUser = 2
+    testUser = 1
     courses = Courses.objects.get(courseID = courseID)
     topics = Topics.objects.filter(courseID = courseID)
     print(testUser,linksID,progressID)
