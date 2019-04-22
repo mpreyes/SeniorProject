@@ -52,22 +52,7 @@ def links(request,degreeID_id,courseID):
     progress = Progress.objects.filter(userID = testUser)
     link_progress = list(zip(links,progress))
     context = {"degreeID": degreeID_id, "course": courses, "topics": topics, "links": links, "link_progress": link_progress} 
-
-    # if request.method == 'POST':
-    #     print("got a post request")
-    #     form = ProgressForm(request.POST,)
-        
-    #     if form.is_valid():
-    #         form.save()
-    #         print("form got saved")
-    #         context["form"] = form
-            
-    #         return render(request,'seniorProjectApp/links.html',context)
-    # else:
-    #     print("Form did not get saved")
-    #     form = ProgressForm()
-    # context["form"] = form
-        
+    print(progress)
 
     return render(request,'seniorProjectApp/links.html',context)
 
@@ -78,14 +63,16 @@ def progress(request,degreeID_id,courseID,linksID):
     topics = Topics.objects.filter(courseID = courseID)
     progress = Progress.objects.get(userID_id = testUser,linkID = linksID)
     link = Links.objects.filter(linksID = linksID)
-    print(progress.notes)
+    print(progress.isCompleted)
+    
     context = {"degreeID": degreeID_id,"course": courses, "topics": topics, "link": link, "progress": progress} 
-
+    print("notes " + str(progress.notes))
+    print("isCompleted " + str(progress.isCompleted))
     if request.method == 'POST':
         print("got a post request")
         #instance = get_object_or_404(Progress,linkID = linksID)
         progress = Progress.objects.get(userID_id = testUser,linkID = linksID)
-        print(str(progress))
+        
         form = ProgressForm(request.POST,instance = progress)
         
         if form.is_valid():
@@ -96,7 +83,7 @@ def progress(request,degreeID_id,courseID,linksID):
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'),'seniorProjectApp/progress.html',context)
     else:
         print("Form did not get saved")
-        form = ProgressForm()
+        form = ProgressForm(instance = progress)
     context["form"] = form
         
 
