@@ -1,0 +1,102 @@
+
+{% extends './default.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+  <!--Navigation bar-->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/seniorProjectApp/"><span>CODE</span>MENTOR</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+         <li><a href="/seniorProjectApp/1/">Dashboard</a></li>
+          {% if user.is_authenticated %}
+                  <li><a href="/seniorProjectApp/1/">Hi {{ user.username }}!</a></li>
+            <li class="btn-trial"><a href="{% url 'logout' %}">logout</a></li>
+          {% else %}
+            <li><a href="">You are not logged in</a></li>
+            <li class="btn-trial"> <a href="{% url 'login' %}">login</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--/ Navigation bar-->
+
+
+
+
+  <section id="cta-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2 class="text-center">{{course.courseName}} </h2>
+
+          {% comment %} <!-- EB: TODO replace text --> {% endcomment %}
+          <div class="row">
+            <div class="col-12">
+              <p class="text-center">  <a href="{{link.linkUrl}}">{{link.linkName}}</a></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <p class="text-center"><i>  Take your notes below!</i></p>
+            </div>
+          </div>
+
+        <div class="row">
+        deg:{{degreeID}} coru:{{course.courseID}}
+                {{link.0.linksID}} {{progress.notes}} us:{{user.id}} {{progress.0.isCompleted}} {{progress.0.notes}}
+                
+                  <form method="post">
+                    {% csrf_token %}
+                       {{ form.non_field_errors }}
+                         <input type="hidden" name="userID" value="{{user.id }}"/>
+                            <input type="hidden" name="linkID" value="{{link.0.linksID}}" />
+                            <input type="hidden" name="progressID" value="NULL" />
+                            <div class="fieldWrapper">
+
+                                {{ form.sender.errors }}
+                                <label for="{{ form.sender.id_for_label }}">isCompleted:</label>
+                                {{ form.isCompleted }}
+                                
+                            </div>
+                    
+                             <div class="fieldWrapper">
+                                {{ form.cc_myself.errors }}
+                                <label for="{{ form.cc_myself.id_for_label }}">notes</label>
+                                 {{ form.notes }}
+
+                                {% comment %} {% if progress.notes == None%}
+                                {{ form.notes }}
+                                {% else %}
+                                {{ progress.notes}}
+                                {% endif %}   {% endcomment %}
+                            </div>
+                    
+                    <button type="button" class="btn btn-secondary"><a href="/seniorProjectApp/{{degreeID}}/{{course.courseID}}/">Back</a></button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+
+          </div>
+    
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+
+{% endblock %}

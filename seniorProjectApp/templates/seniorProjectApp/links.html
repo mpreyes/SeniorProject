@@ -66,8 +66,9 @@
                   </div>
                 </div>
               
-            
-                {% for lp in link_progress  %}
+                {{topic.topicID}} 
+                {% for lp in link_progress %}
+                  {{lp.0.topicID_id}}
                {% if topic.topicID == lp.0.topicID_id %} 
                      
                   <div class="row">
@@ -84,71 +85,17 @@
                     {% endif%}
 
                     <div class="col-sm-9">
-                      <a href='{{lp.0.linkUrl}}' target=blank>{{lp.0.linkName}}</a>                            
+                      <a href='{{lp.0.linkUrl}}' target=blank>{{lp.0.linkName}}</a>    
+                                            
                     </div>
                     
                     <div class="col-sm-1">
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{lp.0.linksID}}">Notes</button>
+                       <button type="button" class="btn btn-primary" ><a href="/seniorProjectApp/{{degreeID}}/{{course.courseID}}/{{lp.0.linksID}}/">Notes {{lp.0.linksID}}</button>
                     </div>
                   </div>
                 </div>
                              
-                <!-- Modal -->
-                <div class="modal fade" id="{{lp.0.linksID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-scrollable" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalScrollableTitle">{{lp.0.linkName}}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                       {{course.courseID}}
-                      <div class="modal-body">
-                            <a href="">{{lp.0.linksID}}</a>
-                            <form action="/seniorProjectApp/1/2/" method="post">
-                                {% csrf_token %}
-                                      <form action="/seniorProjectApp/1/2/" method="post">
-                                {% csrf_token %}
-                                 
-                                {{ form.non_field_errors }}
-                                  <input type="hidden" name="userID" value="{{user.id }}"/>
-                                  <input type="hidden" name="linkID" value="{{lp.0.linksID}}" />
-                                  <input type="hidden" name="progressID" value="NULL" />
-
-                                   <div class="fieldWrapper">
-                                      {{ form.sender.errors }}
-                                      <label for="{{ form.sender.id_for_label }}">isCompleted:</label>
-                                      {{ form.isCompleted }}
-                                      
-                                  </div>
-                                  <div class="fieldWrapper">
-                                      {{ form.cc_myself.errors }}
-                                      <label for="{{ form.cc_myself.id_for_label }}">notes</label>
-
-                                      {% if z.1.notes == None%}
-                                      {{ form.notes }}
-                                      {% else %}
-                                      {{ z.1.notes}}
-                                      {% endif %}
-                                  </div>
-                                
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                </div>   
-                              </form>
-                          
-                          {% comment %} <form>
-                          <div class="form-group">
-                          <label for="exampleFormControlTextarea1"></label>
-                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                          </div>
-                          </form> {% endcomment %}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            
                 
                 {% endif %}
                 {% endfor %}

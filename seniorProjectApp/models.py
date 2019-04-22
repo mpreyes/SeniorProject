@@ -44,7 +44,6 @@ class Links(models.Model):
 
 
 class CustomUser(AbstractUser):
-   
     DEGREE_CHOICES = (
     ('1','Computer Science'),
     ('2', 'Software Engineering'),
