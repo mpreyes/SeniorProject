@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from .forms import CustomUserCreationForm, ProgressForm
 
-# Create your views here.
+
 from seniorProjectApp.models import *
 
 def index(request):
@@ -23,7 +23,7 @@ class SignUp(generic.CreateView):
     template_name = 'seniorProjectApp/signup.html'
 
 def redirectme(request):
-    degreeID  = 1
+    degreeID  = 1 #defaults
     userID = 1
     if request.user.is_authenticated:
         degreeID = request.user.degreeID
@@ -33,19 +33,14 @@ def redirectme(request):
 
 
 def dashboard(request,userID_id,degreeID):
-    #ERIN: add any field you want passed to the dashboard.html page
 
-    
-    #getting courses from computer science only
-    
+
     #if changing degree, change degreeID for both
 
     degree = Degree.objects.get(degreeID = degreeID)
     courses = Courses.objects.filter(degreeID = degreeID)
 
-    #MR: set cache to pass in whatever level we want to show
-    #MR TODO: Create a class to represent our entire class/link relationship
-    #caches['levels'].set('level_freshman', level_freshman) 
+
     context = { "degree_list": degree, "courses_list": courses}
 
     return render(request,'seniorProjectApp/dashboard.html',context)
@@ -61,12 +56,12 @@ def links(request,userID_id,degreeID_id,courseID):
     links = Links.objects.all()
     progress = Progress.objects.filter(userID = userID_id)
     link_progress = list(zip(links,progress))
-    for i in links:
-        print(i.linksID)
-    for j in progress:
-        print(j.notes)
-    for i,j in link_progress:
-        print(i.linksID,j.progressID, j.isCompleted)
+    # for i in links:
+    #     print(i.linksID)
+    # for j in progress:
+    #     print(j.notes)
+    # for i,j in link_progress:
+    #     print(i.linksID,j.progressID, j.isCompleted)
 
     context = {"degreeID": degreeID_id, "course": courses, "topics": topics, "links": links, "link_progress": link_progress} 
     print(progress)
@@ -86,7 +81,7 @@ def progress(request,userID_id,degreeID_id,courseID,linksID, progressID):
 
     if request.method == 'POST':
         print("got a post request")
-        #instance = get_object_or_404(Progress,linkID = linksID)
+
         form = ProgressForm(request.POST,instance = progress)
         print(form.is_valid())
         if form.is_valid():
