@@ -16,9 +16,9 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-         <li><a href="/seniorProjectApp/1/">Dashboard</a></li>
           {% if user.is_authenticated %}
-                  <li><a href="/seniorProjectApp/1/">Hi {{ user.username }}!</a></li>
+            <li><a href="/seniorProjectApp/{{user.id}}/{{degreeID}}">Dashboard</a></li>
+                  <li><a href="/seniorProjectApp/{{user.id}}/{{degreeID}}">Hi {{ user.username }}!</a></li>
             <li class="btn-trial"><a href="{% url 'logout' %}">logout</a></li>
           {% else %}
             <li><a href="">You are not logged in</a></li>
