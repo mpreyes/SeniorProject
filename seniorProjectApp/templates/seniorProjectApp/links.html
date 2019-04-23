@@ -67,7 +67,8 @@
                 <div class="row">
                   <!-- progress star -->
                   <div class="col-sm-2"> 
-                    {% comment %} {{lp.1.isCompleted }} progressID: {{lp.1.progressID}}  linkID: {{lp.0.linksID}} {% endcomment %}
+                  {{lp.1.isCompleted }} progressID: {{lp.1.progressID}}  linkID: {{lp.0.linksID}}
+
                     {% if lp.1.isCompleted == True and topic.topicID == lp.0.topicID_id %}
                       <div class="text-center">
                         <img src="{% static "seniorProjectApp/img/star.png" %}" class="progress-star">
@@ -86,7 +87,7 @@
               
                   <!-- button to save progress -->
                   <div class="col-sm-3">
-                      <a href="/seniorProjectApp/{{degreeID}}/{{course.courseID}}/{{lp.1.linkID_id}}/{{lp.1.progressID}}/">
+                      <a href="/seniorProjectApp/{{user.id}}/{{degreeID}}/{{course.courseID}}/{{lp.1.linkID_id}}/{{lp.1.progressID}}/">
                       <button type="button" class="btn btn-primary" >Notes</button>
                     </a>
                   </div>

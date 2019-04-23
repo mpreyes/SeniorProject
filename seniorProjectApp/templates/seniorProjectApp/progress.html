@@ -2,6 +2,9 @@
 {% extends './default.html' %}
 {% load static %}
 
+
+
+
 {% block content %}
   <!--Navigation bar-->
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -30,63 +33,67 @@
   </nav>
   <!--/ Navigation bar-->
 
-  <section id="progress">
+
+
+
+  <section id="cta-2">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h1 class="text-center">{{course.courseName}} - <a href="{{link.linkUrl}}">{{link.linkName}}</a></h1>
+          <h2 class="text-center">{{course.courseName}} </h2>
+
+          {% comment %} <!-- EB: TODO replace text --> {% endcomment %}
+          <div class="row">
+            <div class="col-12">
+              <p class="text-center">  <a href="{{link.linkUrl}}">{{link.linkName}}</a></p>
+            </div>
+          </div>
 
           <div class="row">
             <div class="col-12">
-                <p class="text-center progress-instructions">Take your notes and check the box after you go 
-                through the material in the link. Make sure you save your progress!</p>
+              <p class="text-center"><i> Take your notes below!</i></p>
+            
             </div>
           </div>
 
-          <div class="row">
-          {% comment %} PROGRESS ID :{{progress.progressID}} linkID: {{link.linksID}}
-            userID: {{user.id}} iscompleted: {{progress.isCompleted}}  notes: {{progress.notes}}  {% endcomment %}
-            <div class="col-8 progress-formatting">  
-                <form method="post">
-                  {% csrf_token %}
-                      {{ form.non_field_errors }}
-                        <input type="hidden" name="userID" value="{{user.id }}"/>
-                        <input type="hidden" name="linkID" value="{{link.linksID}}" />
-                        <input type="hidden" name="progressID" value="NULL" />
+        <div class="row">
+        {{progress.progressID}}
+          userID: {{user.id}} iscompleted: {{progress.isCompleted}}  notes: {{progress.notes}} 
+                
+                  <form method="post">
+                    {% csrf_token %}
+                       {{ form.non_field_errors }}
+                         <input type="hidden" name="userID" value="{{user.id }}"/>
+                            <input type="hidden" name="linkID" value="{{link.linksID}}" />
+                            <input type="hidden" name="progressID" value="NULL" />
+                            <div class="fieldWrapper">
+
+                                {{ form.sender.errors }}
+                                <label for="{{ form.sender.id_for_label }}">isCompleted:</label>
+                                 <td>{% if progress.isCompleted == True %}&#10004;{% else %}&times;{% endif %}</td>
+                                {{ form.isCompleted }}
+                                
+                                
+                            </div>
                     
-                        {% comment %} notes label and field {% endcomment %}
-                        <div class="row">
-                          <div class="col">
-                            {{ form.cc_myself.errors }}
-                            <label for="{{ form.cc_myself.id_for_label }}">
-                              <h4>Notes</h4>
-                            </label>
-                            <div>{{ form.notes }}</div>
-                          </div>
-                        </div>
-
-                        {% comment %} checkbox row {% endcomment %}
-                        <div class="row checkboxrow">
-                          <div class="col">    
-                              {{ form.sender.errors }}
-                              <label for="{{ form.sender.id_for_label }}"><h4>I completed this link!</h4></label>
-                                {% comment %} <td>{% if progress.isCompleted == True %}&#10004;{% else %}&times;{% endif %}</td> {% endcomment %}
-                              {{ form.isCompleted }}
-                          </div>
-                        </div>
-
-                        <div class="row buttonrow">
-                          <div class="col" align="right">
-                            <button type="button" class="btn btn-secondary"><a href="/seniorProjectApp/{{degreeID}}/{{course.courseID}}/">Back</a></button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                          </div>
-                        </div>
+                             <div class="fieldWrapper">
+                                {{ form.cc_myself.errors }}
+                                <label for="{{ form.cc_myself.id_for_label }}">notes</label>
+                                 {{ form.notes }}
+                            </div>
+                    
+                    <button type="button" class="btn btn-secondary"><a href="/seniorProjectApp/{{user.id}}/{{degreeID}}/{{course.courseID}}/">Back</a></button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                     </form>
-            </div>
+
           </div>
+    
         </div>
       </div>
     </div>
+
   </section>
+
+
 
 {% endblock %}
