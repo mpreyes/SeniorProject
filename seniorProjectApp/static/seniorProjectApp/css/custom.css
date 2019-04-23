@@ -93,6 +93,7 @@
 
 .progress-star {
   max-width: 3em;
+  float: left;
 }
 
 .topic-row {
