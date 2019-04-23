@@ -19,9 +19,9 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-         <li><a href="/seniorProjectApp/1/">Dashboard</a></li>
           {% if user.is_authenticated %}
-                  <li><a href="/seniorProjectApp/1/">Hi {{ user.username }}!</a></li>
+            <li><a href="/seniorProjectApp/{{user.id}}/{{degreeID}}">Dashboard</a></li>
+                  <li><a href="/seniorProjectApp/{{user.id}}/{{degreeID}}">Hi {{ user.username }}!</a></li>
             <li class="btn-trial"><a href="{% url 'logout' %}">logout</a></li>
           {% else %}
             <li><a href="">You are not logged in</a></li>
@@ -39,16 +39,20 @@
         <div class="col-lg-12">
           <h1 class="coursetitle text-center">{{course.courseName}}</h1>
           <div class="row">
-            <div class="col-12">
+          <div class="col-12">
               <p class="text-center">{{course.courseDescription}}</p>
-            </div>
+            </div> 
+
           </div>
 
-          <div class="row">
+
+
+            {% comment %} <div class="row">
             <div class="col-12">
               <p class="text-center"><i>* To save your progress, click on the Notes button and save a note! *</i></p>
             </div>
-          </div>
+          </div> {% endcomment %}
+
 
           <div class="row">
             {% for topic in topics%}
@@ -81,7 +85,7 @@
                   
                   <!-- link -->
                   <div class="col-sm-6">
-                    <a href='{{lp.0.linkUrl}}' target=blank>{{lp.0.linkName}}</a>                       
+                    <h4><a href='{{lp.0.linkUrl}}' target=blank>{{lp.0.linkName}}</a></h4>                   
                   </div>
               
                   <!-- button to save progress -->
@@ -99,7 +103,11 @@
             </div>
             {% endfor %}
           </div>
-    
+
+             <div class="alert alert-info text-center" role="alert">
+                <i>* To save your progress, click on the Notes button and save a note! *</i>
+          </div> 
+
         </div>
       </div>
     </div>
