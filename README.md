@@ -8,9 +8,10 @@ for college or review topics from their time in college before they graduate.
 The site is currently a working prototype.
 
 
+![Code Mentor Frontend](https://github.com/mpreyes/SeniorProject/blob/master/seniorProjectApp/static/seniorProjectApp/img/Screen%20Shot%202019-04-22%20at%208.40.57%20PM.png)
+
 
 Written in Django, (2.0.2) HTML/CSS, SQL.
-
 
 
 Use python3 for all commands to avoid confusion.
